@@ -15,6 +15,25 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('slug');
+            $table->string('nama');
+            $table->string('image_url');
+            $table->longText('deskripsi');
+            $table->decimal('harga', 16,0)->default(0);
+            $table->integer('stok')->default(0);
+            $table->integer('kategori_id');
+            //ukuran
+            $table->decimal('berat', 16,0)->default(0);
+            $table->decimal('panjang', 16,0)->default(0);
+            $table->decimal('lebar', 16,0)->default(0);
+            $table->decimal('tinggi', 16,0)->default(0);
+            //diskon
+            $table->integer('diskon_percent')->default(0);
+            $table->decimal('diskon_rupiah', 16,0)->default(0);
+            $table->integer('diskon_tipe')->default(0);
+            $table->boolean('status')->default(1);
+            //komisi
+            $table->boolean('komisi')->default(0);
             $table->timestamps();
         });
     }

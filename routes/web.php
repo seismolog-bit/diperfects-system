@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\KelurahanController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +21,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+// kelurahan search
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('kabupaten-search', [KelurahanController::class, 'kabupaten_search'])->name('kabupaten-search');
+Route::get('kecamatan-search', [KelurahanController::class, 'kecamatan_search'])->name('kecamatan-search');
+Route::get('kelurahan-search', [KelurahanController::class, 'kelurahan_search'])->name('kelurahan-search');
