@@ -2,12 +2,68 @@
 
 @section('content')
     <x-admin-page-header
-        title='Pesanan <span class="badge bg-soft-dark text-dark ms-2">{{ number_format($orders->count()) }}</span>'
-        subtitle="Daftar semua pesanan">
-        <a class="btn btn-primary" href="{{ route('admin.order.create') }}">
-            <i class="bi-person-plus-fill me-1"></i> Tambah Pesanan
-        </a>
+        title='Pesanan membership <span class="badge bg-soft-dark text-dark ms-2">{{ number_format($memberships->count()) }}</span>'
+        subtitle="Daftar semua pesanan berdasarkan membership">
+        {{-- <a class="btn btn-primary" href="{{ route('admin.membership.create') }}">
+            <i class="bi-person-plus-fill me-1"></i> Tambah Membership
+        </a> --}}
     </x-admin-page-header>
+
+    <div class="card card-body mb-3 mb-lg-5">
+        <div class="row col-lg-divider gx-lg-6">
+            <div class="col-lg-3">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <h6 class="card-subtitle mb-3">Total Pesanan</h6>
+                        <h3 class="card-title">{{number_format($orders->count())}}</h3>
+                    </div>
+
+                    <span class="icon icon-soft-primary icon-sm icon-circle ms-3">
+                        <i class="bi-receipt"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <h6 class="card-subtitle mb-3">Total transaksi</h6>
+                        <h3 class="card-title">{{number_format($orders->sum('grand_total'))}}</h3>
+                    </div>
+
+                    <span class="icon icon-soft-info icon-sm icon-circle ms-3">
+                        <i class="bi-currency-dollar"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <h6 class="card-subtitle mb-3">Total Pembayaran</h6>
+                        <h3 class="card-title">{{number_format($orders->sum('payment_transfer') + $orders->sum('payment_cash'))}}</h3>
+                    </div>
+
+                    <span class="icon icon-soft-warning icon-sm icon-circle ms-3">
+                        <i class="bi-credit-card"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <h6 class="card-subtitle mb-3">Total Kekurangan</h6>
+                        <h3 class="card-title">{{number_format($orders->sum('grand_total') - ($orders->sum('payment_transfer') + $orders->sum('payment_cash')))}}</h3>
+                    </div>
+
+                    <span class="icon icon-soft-danger icon-sm icon-circle ms-3">
+                        <i class="bi-dash"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="card">
         <!-- Header -->
@@ -78,7 +134,7 @@
                 class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
                 data-hs-datatables-options='{
                        "columnDefs": [{
-                          "targets": [0, 5, 6],
+                          "targets": [],
                           "orderable": false
                         }],
                        "order": [],
@@ -94,56 +150,48 @@
                      }'>
                 <thead class="thead-light">
                     <tr>
-                        <th>Invoice</th>
-                        <th>Member</th>
-                        <th>Total</th>
+                        <th>Nama</th>
+                        <th>Tipe</th>
+                        <th>Nomor HP</th>
+                        <th>Transaksi</th>
+                        <th>Total pesanan</th>
                         <th>Pembayaran</th>
-                        <th>Tanggal</th>
-                        <th>Status</th>
-                        <th></th>
+                        <th>Kekurangan </th>
+                        {{-- <th></th> --}}
                     </tr>
                 </thead>
 
                 <tbody>
-                    @forelse ($orders as $order)
+                    @forelse ($memberships as $membership)
                         <tr>
                             <td>
-                                <a href="{{route('admin.order.show', $order->id)}}"><b>{{ $order->code }}</b></a>
+                                <a class="d-flex align-items-center" href="{{ route('admin.order_membership.show', $membership->id) }}">
+                                    <div class="flex-grow-1">
+                                        <h5 class="text-inherit mb-0">{{ $membership->nama }}</h5>
+                                    </div>
+                                </a>
                             </td>
-                            <td>{{ $order->membership->nama }}</td>
-                            <td class="text-end">{{ number_format($order->grand_total) }}</td>
-                            <td class="text-end">{{ number_format($order->payment_cash + $order->payment_transfer) }}</td>
-                            <td>{{ $order->tanggal_order->format('d-m-Y') }}</td>
-                            <td>
-                                @if ($order->status == 1)
-                                    <span class="badge bg-soft-warning text-warning">
-                                        Aktif
-                                    </span>
-                                @elseif($order->status == 2)
-                                    <span class="badge bg-soft-success text-success">
-                                        Selesai
-                                    </span>
-                                @else
-                                    <span class="badge bg-soft-danger text-danger">
-                                        Dibatalkan
-                                    </span>
-                                @endif
-                            </td>
-                            <td class="text-end">
+                            <td>{{ $membership->membership_type->nama }}</td>
+                            <td>{{ $membership->nomor_hp }}</td>
+                            <td class="text-center">{{ number_format($membership->orders->count()) }}</td>
+                            <td class="text-end">{{ number_format($membership->orders->sum('grand_total')) }}</td>
+                            <td class="text-end">{{ number_format($membership->orders->sum('payment_transfer') + $membership->orders->sum('payment_cash')) }}</td>
+                            <td class="text-end">{{ number_format($membership->orders->sum('grand_total') - ($membership->orders->sum('payment_transfer') + $membership->orders->sum('payment_cash'))) }}</td>
+                            {{-- <td class="text-end">
                                 <div class="btn-group" role="group">
-                                    <a class="btn btn-white btn-sm" href="{{ route('admin.order.edit', $order) }}">
-                                        <i class="bi-pencil-fill me-1"></i> Edit
+                                    <a class="btn btn-white btn-sm" href="{{ route('admin.membership.edit', $membership) }}">
+                                        <i class="bi-eye me-1"></i> View
                                     </a>
                                     <div class="btn-group">
                                         <button type="button"
                                             class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"
-                                            id="ordersEditDropdown8" data-bs-toggle="dropdown"
+                                            id="membershipsEditDropdown8" data-bs-toggle="dropdown"
                                             aria-expanded="false"></button>
 
                                         <div class="dropdown-menu dropdown-menu-end mt-1"
-                                            aria-labelledby="ordersEditDropdown8">
-                                            <form action="{{ route('admin.order.destroy', $order->id) }}" method="post"
-                                                onsubmit="return confirm('Anda yakin ingin membatalkan pesanan ini?')">
+                                            aria-labelledby="membershipsEditDropdown8">
+                                            <form action="{{ route('admin.membership.destroy', $membership->id) }}" method="post"
+                                                onsubmit="return confirm('Anda yakin ingin menghapus {{ $membership->nama }}?')">
                                                 @csrf @method('delete')
                                                 <button class="dropdown-item" type="submit">
                                                     <i class="bi-trash dropdown-item-icon"></i> Delete
@@ -152,7 +200,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </td>
+                            </td> --}}
                         </tr>
                     @empty
                         <tr>

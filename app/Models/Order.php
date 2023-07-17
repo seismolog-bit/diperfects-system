@@ -30,11 +30,16 @@ class Order extends Model
 
     public function membership()
     {
-        $this->belongsTo(Membership::class, 'membership_id', 'id');
+        return $this->belongsTo(Membership::class, 'membership_id', 'id');
     }
 
     public function order_items()
     {
-        $this->hasMany(OrderItem::class);
+        return $this->hasMany(OrderItem::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class, 'order_id', 'id');
     }
 }

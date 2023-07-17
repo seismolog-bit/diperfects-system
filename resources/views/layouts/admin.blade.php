@@ -51,7 +51,7 @@
             "deleteLine:build": "hs-builder:build-delete",
             "deleteLine:dist": "hs-builder:dist-delete",
             "previewMode": false,
-            "startPath": "/index.html",
+            "startPath": "/{{route('admin.index')}}",
             "vars": {
                 "themeFont": "https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap",
                 "version": "?v=1.0"
@@ -228,7 +228,7 @@
         class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white">
         <div class="navbar-nav-wrap">
             <!-- Logo -->
-            <a class="navbar-brand" href="index.html" aria-label="Front">
+            <a class="navbar-brand" href="{{route('admin.index')}}" aria-label="Front">
                 <img class="navbar-brand-logo" src="{{ asset('assets/svg/logos/logo.svg') }}" alt="Logo"
                     data-hs-theme-appearance="default">
                 <img class="navbar-brand-logo" src="{{ asset('assets/svg/logos-light/logo.svg') }}" alt="Logo"
@@ -315,10 +315,10 @@
                                 <span class="dropdown-header">Recent searches</span>
 
                                 <div class="dropdown-item bg-transparent text-wrap">
-                                    <a class="btn btn-soft-dark btn-xs rounded-pill" href="index.html">
+                                    <a class="btn btn-soft-dark btn-xs rounded-pill" href="{{route('admin.index')}}">
                                         Gulp <i class="bi-search ms-1"></i>
                                     </a>
-                                    <a class="btn btn-soft-dark btn-xs rounded-pill" href="index.html">
+                                    <a class="btn btn-soft-dark btn-xs rounded-pill" href="{{route('admin.index')}}">
                                         Notification panel <i class="bi-search ms-1"></i>
                                     </a>
                                 </div>
@@ -327,7 +327,7 @@
 
                                 <span class="dropdown-header">Tutorials</span>
 
-                                <a class="dropdown-item" href="index.html">
+                                <a class="dropdown-item" href="{{route('admin.index')}}">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-shrink-0">
                                             <span class="icon icon-soft-dark icon-xs icon-circle">
@@ -341,7 +341,7 @@
                                     </div>
                                 </a>
 
-                                <a class="dropdown-item" href="index.html">
+                                <a class="dropdown-item" href="{{route('admin.index')}}">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-shrink-0">
                                             <span class="icon icon-soft-dark icon-xs icon-circle">
@@ -359,7 +359,7 @@
 
                                 <span class="dropdown-header">Members</span>
 
-                                <a class="dropdown-item" href="index.html">
+                                <a class="dropdown-item" href="{{route('admin.index')}}">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-shrink-0">
                                             <img class="avatar avatar-xs avatar-circle"
@@ -374,7 +374,7 @@
                                     </div>
                                 </a>
 
-                                <a class="dropdown-item" href="index.html">
+                                <a class="dropdown-item" href="{{route('admin.index')}}">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-shrink-0">
                                             <img class="avatar avatar-xs avatar-circle"
@@ -387,7 +387,7 @@
                                     </div>
                                 </a>
 
-                                <a class="dropdown-item" href="index.html">
+                                <a class="dropdown-item" href="{{route('admin.index')}}">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-shrink-0">
                                             <div class="avatar avatar-xs avatar-soft-info avatar-circle">
@@ -403,7 +403,7 @@
                             <!-- End Body -->
 
                             <!-- Footer -->
-                            <a class="card-footer text-center" href="index.html">
+                            <a class="card-footer text-center" href="{{route('admin.index')}}">
                                 See all results <i class="bi-chevron-right small"></i>
                             </a>
                             <!-- End Footer -->
@@ -1162,7 +1162,7 @@
             <div class="navbar-vertical-footer-offset">
                 <!-- Logo -->
 
-                <a class="navbar-brand" href="index.html" aria-label="Front">
+                <a class="navbar-brand" href="{{route('admin.index')}}" aria-label="Front">
                     <img class="navbar-brand-logo" src="{{ asset('assets/svg/logos/logo.svg') }}" alt="Logo"
                         data-hs-theme-appearance="default">
                     <img class="navbar-brand-logo" src="{{ asset('assets/svg/logos-light/logo.svg') }}"
@@ -1348,8 +1348,8 @@
         <div class="footer">
             <div class="row justify-content-between align-items-center">
                 <div class="col">
-                    <p class="fs-6 mb-0">&copy; Front. <span class="d-none d-sm-inline-block">2022
-                            Htmlstream.</span></p>
+                    <p class="fs-6 mb-0">&copy; DI' Perfects. <span class="d-none d-sm-inline-block">2023
+                            Beta + 0.1.</span></p>
                 </div>
                 <!-- End Col -->
 
@@ -1618,7 +1618,7 @@
                     <nav class="js-mega-menu navbar-nav-wrap">
                         <!-- Logo -->
 
-                        <a class="navbar-brand" href="index.html" aria-label="Front">
+                        <a class="navbar-brand" href="{{route('admin.index')}}" aria-label="Front">
                             <img class="navbar-brand-logo" src="{{ asset('assets/svg/logos/logo.svg') }}"
                                 alt="Logo" data-hs-theme-appearance="default">
                             <img class="navbar-brand-logo" src="{{ asset('assets/svg/logos-light/logo.svg') }}"
@@ -2492,7 +2492,7 @@
                                     <!-- Mega Menu -->
                                     <div class="hs-sub-menu dropdown-menu navbar-dropdown-menu-borderless"
                                         aria-labelledby="dashboardsMegaMenu" style="min-width: 14rem;">
-                                        <a class="dropdown-item active" href="index.html">Default</a>
+                                        <a class="dropdown-item active" href="{{route('admin.index')}}">Default</a>
                                         <a class="dropdown-item " href="dashboard-alternative.html">Alternative</a>
                                     </div>
                                     <!-- End Mega Menu -->
@@ -2797,13 +2797,13 @@
                                 <!-- End Apps -->
 
                                 <li class="nav-item">
-                                    <a class="nav-link " href="layouts/index.html">
+                                    <a class="nav-link " href="layouts/{{route('admin.index')}}">
                                         <i class="bi-grid-1x2 dropdown-item-icon"></i> Layouts
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link " href="documentation/index.html" data-placement="left">
+                                    <a class="nav-link " href="documentation/{{route('admin.index')}}" data-placement="left">
                                         <i class="bi-book dropdown-item-icon"></i> Docs
                                     </a>
                                 </li>
@@ -2824,7 +2824,7 @@
                     <div class="container">
                         <div class="navbar-nav-wrap">
                             <!-- Logo -->
-                            <a class="navbar-brand" href="index.html" aria-label="Front">
+                            <a class="navbar-brand" href="{{route('admin.index')}}" aria-label="Front">
                                 <img class="navbar-brand-logo" src="{{ asset('assets/svg/logos/logo-white.svg') }}"
                                     alt="Logo">
                             </a>
@@ -2900,11 +2900,11 @@
 
                                                     <div class="dropdown-item bg-transparent text-wrap">
                                                         <a class="btn btn-soft-dark btn-xs rounded-pill"
-                                                            href="index.html">
+                                                            href="{{route('admin.index')}}">
                                                             Gulp <i class="bi-search ms-1"></i>
                                                         </a>
                                                         <a class="btn btn-soft-dark btn-xs rounded-pill"
-                                                            href="index.html">
+                                                            href="{{route('admin.index')}}">
                                                             Notification panel <i class="bi-search ms-1"></i>
                                                         </a>
                                                     </div>
@@ -2913,7 +2913,7 @@
 
                                                     <span class="dropdown-header">Tutorials</span>
 
-                                                    <a class="dropdown-item" href="index.html">
+                                                    <a class="dropdown-item" href="{{route('admin.index')}}">
                                                         <div class="d-flex align-items-center">
                                                             <div class="flex-shrink-0">
                                                                 <span class="icon icon-soft-dark icon-xs icon-circle">
@@ -2927,7 +2927,7 @@
                                                         </div>
                                                     </a>
 
-                                                    <a class="dropdown-item" href="index.html">
+                                                    <a class="dropdown-item" href="{{route('admin.index')}}">
                                                         <div class="d-flex align-items-center">
                                                             <div class="flex-shrink-0">
                                                                 <span class="icon icon-soft-dark icon-xs icon-circle">
@@ -2945,7 +2945,7 @@
 
                                                     <span class="dropdown-header">Members</span>
 
-                                                    <a class="dropdown-item" href="index.html">
+                                                    <a class="dropdown-item" href="{{route('admin.index')}}">
                                                         <div class="d-flex align-items-center">
                                                             <div class="flex-shrink-0">
                                                                 <img class="avatar avatar-xs avatar-circle"
@@ -2961,7 +2961,7 @@
                                                         </div>
                                                     </a>
 
-                                                    <a class="dropdown-item" href="index.html">
+                                                    <a class="dropdown-item" href="{{route('admin.index')}}">
                                                         <div class="d-flex align-items-center">
                                                             <div class="flex-shrink-0">
                                                                 <img class="avatar avatar-xs avatar-circle"
@@ -2974,7 +2974,7 @@
                                                         </div>
                                                     </a>
 
-                                                    <a class="dropdown-item" href="index.html">
+                                                    <a class="dropdown-item" href="{{route('admin.index')}}">
                                                         <div class="d-flex align-items-center">
                                                             <div class="flex-shrink-0">
                                                                 <div
@@ -2991,7 +2991,7 @@
                                                 <!-- End Body -->
 
                                                 <!-- Footer -->
-                                                <a class="card-footer text-center" href="index.html">
+                                                <a class="card-footer text-center" href="{{route('admin.index')}}">
                                                     See all results <i class="bi-chevron-right small"></i>
                                                 </a>
                                                 <!-- End Footer -->
@@ -3924,7 +3924,7 @@
                                     <!-- Mega Menu -->
                                     <div class="hs-sub-menu dropdown-menu navbar-dropdown-menu-borderless"
                                         aria-labelledby="dashboardsMegaMenu" style="min-width: 14rem;">
-                                        <a class="dropdown-item active" href="index.html">Default</a>
+                                        <a class="dropdown-item active" href="{{route('admin.index')}}">Default</a>
                                         <a class="dropdown-item " href="dashboard-alternative.html">Alternative</a>
                                     </div>
                                     <!-- End Mega Menu -->
@@ -4229,13 +4229,13 @@
                                 <!-- End Apps -->
 
                                 <li class="nav-item">
-                                    <a class="nav-link " href="layouts/index.html">
+                                    <a class="nav-link " href="layouts/{{route('admin.index')}}">
                                         <i class="bi-grid-1x2 dropdown-item-icon"></i> Layouts
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link " href="documentation/index.html" data-placement="left">
+                                    <a class="nav-link " href="documentation/{{route('admin.index')}}" data-placement="left">
                                         <i class="bi-book dropdown-item-icon"></i> Docs
                                     </a>
                                 </li>
@@ -5306,6 +5306,8 @@
     </div>
     <!-- End Create a new user Modal -->
     <!-- ========== END SECONDARY CONTENTS ========== -->
+
+    @yield('modal')
 
     <!-- JS Implementing Plugins -->
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>

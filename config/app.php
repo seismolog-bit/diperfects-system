@@ -196,6 +196,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Laravolt\Indonesia\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Darryldecode\Cart\CartServiceProvider::class,
     ],
 
     /*
@@ -213,6 +214,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Indonesia' => Laravolt\Indonesia\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
     ])->toArray(),
 
 ];

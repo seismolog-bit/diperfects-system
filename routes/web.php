@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\KelurahanController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,12 +20,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// kelurahan search
-
+// wilayah
 Route::get('kabupaten-search', [KelurahanController::class, 'kabupaten_search'])->name('kabupaten-search');
 Route::get('kecamatan-search', [KelurahanController::class, 'kecamatan_search'])->name('kecamatan-search');
 Route::get('kelurahan-search', [KelurahanController::class, 'kelurahan_search'])->name('kelurahan-search');
+
+//cart
+Route::resource('carts', CartController::class);
+Route::post('cart-clear', [CartController::class, 'clear'])->name('cart.clear');

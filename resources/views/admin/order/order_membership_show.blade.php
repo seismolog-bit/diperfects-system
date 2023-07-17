@@ -2,12 +2,68 @@
 
 @section('content')
     <x-admin-page-header
-        title='Pesanan <span class="badge bg-soft-dark text-dark ms-2">{{ number_format($orders->count()) }}</span>'
+        title='Pesanan {{ $membership->nama }}'
         subtitle="Daftar semua pesanan">
-        <a class="btn btn-primary" href="{{ route('admin.order.create') }}">
+        {{-- <a class="btn btn-primary" href="{{ route('admin.order.create') }}">
             <i class="bi-person-plus-fill me-1"></i> Tambah Pesanan
-        </a>
+        </a> --}}
     </x-admin-page-header>
+
+    <div class="card card-body mb-3 mb-lg-5">
+        <div class="row col-lg-divider gx-lg-6">
+            <div class="col-lg-3">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <h6 class="card-subtitle mb-3">Total Pesanan</h6>
+                        <h3 class="card-title">{{number_format($orders->count())}}</h3>
+                    </div>
+
+                    <span class="icon icon-soft-primary icon-sm icon-circle ms-3">
+                        <i class="bi-receipt"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <h6 class="card-subtitle mb-3">Total transaksi</h6>
+                        <h3 class="card-title">{{number_format($orders->sum('grand_total'))}}</h3>
+                    </div>
+
+                    <span class="icon icon-soft-info icon-sm icon-circle ms-3">
+                        <i class="bi-currency-dollar"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <h6 class="card-subtitle mb-3">Total Pembayaran</h6>
+                        <h3 class="card-title">{{number_format($orders->sum('payment_transfer') + $orders->sum('payment_cash'))}}</h3>
+                    </div>
+
+                    <span class="icon icon-soft-warning icon-sm icon-circle ms-3">
+                        <i class="bi-credit-card"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <h6 class="card-subtitle mb-3">Total Kekurangan</h6>
+                        <h3 class="card-title">{{number_format($orders->sum('grand_total') - ($orders->sum('payment_transfer') + $orders->sum('payment_cash')))}}</h3>
+                    </div>
+
+                    <span class="icon icon-soft-danger icon-sm icon-circle ms-3">
+                        <i class="bi-dash"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="card">
         <!-- Header -->
@@ -78,7 +134,7 @@
                 class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
                 data-hs-datatables-options='{
                        "columnDefs": [{
-                          "targets": [0, 5, 6],
+                          "targets": [0],
                           "orderable": false
                         }],
                        "order": [],
@@ -95,12 +151,12 @@
                 <thead class="thead-light">
                     <tr>
                         <th>Invoice</th>
-                        <th>Member</th>
+                        <th>Tanggal</th>
                         <th>Total</th>
                         <th>Pembayaran</th>
-                        <th>Tanggal</th>
+                        <th>Kekurangan</th>
                         <th>Status</th>
-                        <th></th>
+                        {{-- <th></th> --}}
                     </tr>
                 </thead>
 
@@ -108,12 +164,14 @@
                     @forelse ($orders as $order)
                         <tr>
                             <td>
-                                <a href="{{route('admin.order.show', $order->id)}}"><b>{{ $order->code }}</b></a>
+                                <a href="{{ route('admin.order.show', $order->id) }}"><b>{{ $order->code }}</b></a>
                             </td>
-                            <td>{{ $order->membership->nama }}</td>
+                            <td>{{ $order->tanggal_order->format('d-m-Y') }}</td>
                             <td class="text-end">{{ number_format($order->grand_total) }}</td>
                             <td class="text-end">{{ number_format($order->payment_cash + $order->payment_transfer) }}</td>
-                            <td>{{ $order->tanggal_order->format('d-m-Y') }}</td>
+                            <td class="text-end">
+                                {{ number_format($order->grand_total - ($order->payment_cash + $order->payment_transfer)) }}
+                            </td>
                             <td>
                                 @if ($order->status == 1)
                                     <span class="badge bg-soft-warning text-warning">
@@ -129,7 +187,7 @@
                                     </span>
                                 @endif
                             </td>
-                            <td class="text-end">
+                            {{-- <td class="text-end">
                                 <div class="btn-group" role="group">
                                     <a class="btn btn-white btn-sm" href="{{ route('admin.order.edit', $order) }}">
                                         <i class="bi-pencil-fill me-1"></i> Edit
@@ -152,7 +210,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </td>
+                            </td> --}}
                         </tr>
                     @empty
                         <tr>

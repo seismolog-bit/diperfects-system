@@ -27,7 +27,7 @@
                                 <label for="namaLabel" class="form-label">Nama</label>
 
                                 <input type="text" class="form-control" name="nama" id="namaLabel"
-                                    placeholder="cth. Juna Eau De Parfum" aria-label="cth. Juna Eau De Parfum"
+                                    placeholder="Nama lengkap" aria-label="Nama lengkap"
                                     value="{{ old('nama') }}" required>
                             </div>
                         </div>
@@ -35,8 +35,7 @@
                             <div class="mb-4">
                                 <label for="image_urlLabel" class="form-label">Foto</label>
 
-                                <input type="file" class="form-control" name="image_url" id="image_urlLabel"
-                                    placeholder="cth. Juna Eau De Parfum" aria-label="cth. Juna Eau De Parfum">
+                                <input type="file" class="form-control" name="image_url" id="image_urlLabel">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -44,7 +43,7 @@
                                 <label for="nomor_hpLabel" class="form-label">Nomor HP</label>
 
                                 <input type="text" class="form-control" name="nomor_hp" id="nomor_hpLabel"
-                                    placeholder="cth. Juna Eau De Parfum" aria-label="cth. Juna Eau De Parfum"
+                                    placeholder="0896XXXXXXXX" aria-label="0896XXXXXXXX"
                                     value="{{ old('nomor_hp') }}" required>
                             </div>
                         </div>
@@ -70,7 +69,7 @@
                         <div class="col-md-12">
                             <div class="mb-4">
                                 <label for="alamatLabel" class="form-label">Alamat</label>
-                                <textarea name="alamat" id="alamatLabel" class="form-control" required>{{ old('alamat') }}</textarea>
+                                <textarea name="alamat" id="alamatLabel" class="form-control" placeholder="Alamat lengkap" required>{{ old('alamat') }}</textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -144,6 +143,7 @@
 @endsection
 
 @section('script')
+    {{-- <script src="{{ asset('assets/js/wilayah.js') }}"></script> --}}
     <script type="text/javascript">
         $(document).ready(function() {
             $(document).on('change', '#provinsi_idLabel', function() {

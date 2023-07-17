@@ -15,7 +15,8 @@
         <div class="nav-item">
             <a class="nav-link dropdown-toggle {{ request()->routeIs(['admin.product.*', 'admin.kategori.*']) ? 'active' : '' }}"
                 href="#navbarVerticalMenuProducts" role="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarVerticalMenuProducts" aria-expanded="{{ request()->routeIs(['admin.product.*', 'admin.kategori.*']) ? 'true' : '' }}"
+                data-bs-target="#navbarVerticalMenuProducts"
+                aria-expanded="{{ request()->routeIs(['admin.product.*', 'admin.kategori.*']) ? 'true' : '' }}"
                 aria-controls="navbarVerticalMenuProducts">
                 <i class="bi-basket nav-icon"></i>
                 <span class="nav-link-title">Produk</span>
@@ -36,7 +37,8 @@
         <div class="nav-item">
             <a class="nav-link dropdown-toggle {{ request()->routeIs('admin.order.create') ? 'active' : '' }}"
                 href="#navbarVerticalMenuOrders" role="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarVerticalMenuOrders" aria-expanded="{{ request()->routeIs('admin.product.create') ? 'true' : '' }}"
+                data-bs-target="#navbarVerticalMenuOrders"
+                aria-expanded="{{ request()->routeIs('admin.product.create') ? 'true' : '' }}"
                 aria-controls="navbarVerticalMenuOrders">
                 <i class="bi-receipt nav-icon"></i>
                 <span class="nav-link-title">Pesanan</span>
@@ -45,13 +47,16 @@
             <div id="navbarVerticalMenuOrders"
                 class="nav-collapse collapse {{ request()->routeIs('admin.order.*') ? 'show' : '' }}"
                 data-bs-parent="#navbarVerticalMenu">
-                <a class="nav-link {{ request()->routeIs('admin.order.*') ? 'active' : '' }}"
-                    href="{{ route('admin.order.index') }}">Daftar Pesanan</a>
-                <a class="nav-link {{ request()->routeIs('admin.order.create') ? 'active' : '' }}"
-                    href="{{ route('admin.order.create') }}">Tambah Pesanan</a>
-                <a class="nav-link {{ request()->routeIs('admin.order_membership.*') ? 'active' : '' }}"
-                    href="{{ route('admin.order_membership.index') }}">Pesanan Membership</a>
+                <a class="nav-link" href="{{ route('admin.order.index') }}">Daftar Pesanan</a>
+                <a class="nav-link" href="{{ route('admin.order.create') }}">Tambah Pesanan</a>
             </div>
+        </div>
+        <div class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.order_membership.*') ? 'active' : '' }}"
+                href="{{ route('admin.order_membership.index') }}" data-placement="left">
+                <i class="bi-bag-check nav-icon"></i>
+                <span class="nav-link-title">Pesanan Membership</span>
+            </a>
         </div>
 
         <span class="dropdown-header mt-4">User</span>
@@ -60,7 +65,8 @@
         <div class="nav-item">
             <a class="nav-link dropdown-toggle {{ request()->routeIs(['admin.membership.*', 'admin.member-type.*']) ? 'active' : '' }}"
                 href="#navbarVerticalMenuMemberships" role="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarVerticalMenuMemberships" aria-expanded="{{ request()->routeIs(['admin.membership.*', 'admin.member-type.*']) ? 'true' : '' }}"
+                data-bs-target="#navbarVerticalMenuMemberships"
+                aria-expanded="{{ request()->routeIs(['admin.membership.*', 'admin.member-type.*']) ? 'true' : '' }}"
                 aria-controls="navbarVerticalMenuMemberships">
                 <i class="bi-person-badge nav-icon"></i>
                 <span class="nav-link-title">Membership</span>
@@ -77,7 +83,8 @@
         </div>
 
         <div class="nav-item">
-            <a class="nav-link {{ request()->routeIs('admin.user.*') ? 'active' : '' }}" href="{{route('admin.user.index')}}" data-placement="left">
+            <a class="nav-link {{ request()->routeIs('admin.user.*') ? 'active' : '' }}"
+                href="{{ route('admin.user.index') }}" data-placement="left">
                 <i class="bi-people nav-icon"></i>
                 <span class="nav-link-title">User</span>
             </a>
