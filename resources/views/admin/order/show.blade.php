@@ -237,7 +237,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <label for="lampiranLabel" class="form-label">Lampiran</label>
-                    <input type="file" class="form-control" id="lampiranLabel" name="lampiran" required>
+                    <input type="file" class="form-control" id="lampiranLabel" name="lampiran">
                 </div>
             </div>
             <div class="row">
