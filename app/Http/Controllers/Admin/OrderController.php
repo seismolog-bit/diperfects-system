@@ -99,6 +99,8 @@ class OrderController extends Controller
 
         $this->order_item_store($order);
 
+        \Cart::clear();
+
         return redirect()->route('admin.order.index')->with('success', 'Berhasil membuat pesanan');
 
     }
