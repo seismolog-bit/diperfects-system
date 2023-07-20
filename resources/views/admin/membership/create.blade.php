@@ -35,7 +35,7 @@
                             <div class="mb-4">
                                 <label for="image_urlLabel" class="form-label">Foto</label>
 
-                                <input type="file" class="form-control" name="image_url" id="image_urlLabel">
+                                <input type="file" class="form-control" name="image_url" id="image_urlLabel" required>
                             </div>
                         </div>
                         <div class="col-md-6">

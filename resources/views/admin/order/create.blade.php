@@ -14,7 +14,8 @@
                 <!-- Header -->
                 <div class="card-header card-header-content-between">
                     <h4 class="card-header-title">Produk pesanan <span
-                            class="badge bg-soft-dark text-dark rounded-circle ms-1">{{ number_format(Cart::getTotalQuantity()) }}</span></h4>
+                            class="badge bg-soft-dark text-dark rounded-circle ms-1">{{ number_format(Cart::getTotalQuantity()) }}</span>
+                    </h4>
                     <div class="d-flex">
                         <form action="{{ route('cart.clear') }}" method="post">
                             @csrf
@@ -97,8 +98,9 @@
                         <div class="mb-4">
                             <div class="d-flex justify-content-between align-items-center">
                                 <label for="vendorLabel" class="form-label">Member</label>
-                                <a href="{{route('admin.membership.create')}}">Tambah member</a>
-                              </div>
+                                {{-- <a href="{{ route('admin.membership.create') }}">Tambah member</a> --}}
+                                <a class="form-label text-primary" type="button" data-bs-toggle="modal" data-bs-target="#addMembership"></i>Tambah membership</a>
+                            </div>
 
 
                             <div class="tom-select-custom">
@@ -109,7 +111,9 @@
                                 }'>
                                     {{-- <option value="">Pilih membership...</option> --}}
                                     @foreach ($memberships as $membership)
-                                        <option value="{{ $membership->id }}" {{old('membership_id') == $membership->id ? 'selected' : ''}}>{{ $membership->nama }}</option>
+                                        <option value="{{ $membership->id }}"
+                                            {{ old('membership_id') == $membership->id ? 'selected' : '' }}>
+                                            {{ $membership->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -118,22 +122,25 @@
                         <div class="mb-4">
                             <label for="tanggal_orderLabel" class="form-label">Tanggal pemesanan</label>
 
-                            <input type="date" class="js-flatpickr form-control flatpickr-custom" id="tanggal_orderLabel" name="tanggal_order" data-hs-flatpickr-options='{
+                            <input type="date" class="js-flatpickr form-control flatpickr-custom" id="tanggal_orderLabel"
+                                name="tanggal_order"
+                                data-hs-flatpickr-options='{
                                 "dateFormat": "d/m/Y"
-                              }' value="{{ old('tanggal_order') ?? now()->format('Y-m-d') }}">
+                              }'
+                                value="{{ old('tanggal_order') ?? now()->format('Y-m-d') }}">
                         </div>
 
                         <div class="mb-4">
                             <label for="ongkirLabel" class="form-label">Biaya Pengiriman</label>
 
                             <input type="number" class="form-control" id="ongkirLabel" placeholder="cth. 10000"
-                                name="ongkir" aria-label="cth. 10000" value="{{old('ongkir')}}">
+                                name="ongkir" aria-label="cth. 10000" value="{{ old('ongkir') }}">
                         </div>
 
                         <div class="mb-4">
                             <label for="noteLabel" class="form-label">Catatan</label>
 
-                            <textarea type="text" class="form-control" id="noteLabel" placeholder="Catatan pesanan" name="note" required>{{old('note')}}</textarea>
+                            <textarea type="text" class="form-control" id="noteLabel" placeholder="Catatan pesanan" name="note" required>{{ old('note') }}</textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100">Konfirmasi Pesanan</button>
@@ -241,6 +248,144 @@
             </div>
         </div>
     </x-admin-modal>
+
+    <x-admin-modal id="addMembership" title="Menambahkan member">
+        <div class="card mb-3 mb-lg-5">
+            <!-- Header -->
+            <div class="card-header">
+                <h4 class="card-header-title">Informasi member</h4>
+            </div>
+            <!-- End Header -->
+
+            <!-- Body -->
+            <div class="card-body">
+                <form action="{{ route('admin.membership.store') }}" method="post" class="row"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="order" value="1">
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label for="namaLabel" class="form-label">Nama</label>
+
+                            <input type="text" class="form-control" name="nama" id="namaLabel"
+                                placeholder="Nama lengkap" aria-label="Nama lengkap" value="{{ old('nama') }}"
+                                required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label for="image_urlLabel" class="form-label">Foto</label>
+
+                            <input type="file" class="form-control" name="image_url" id="image_urlLabel" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label for="nomor_hpLabel" class="form-label">Nomor HP</label>
+
+                            <input type="text" class="form-control" name="nomor_hp" id="nomor_hpLabel"
+                                placeholder="0896XXXXXXXX" aria-label="0896XXXXXXXX"
+                                value="{{ old('nomor_hp') }}" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label for="membership_type_idLabel" class="form-label">Tipe memberhsip</label>
+
+                            <div class="tom-select-custom">
+                                <select class="js-select form-select" autocomplete="off"
+                                    id="membership_type_idLabel"
+                                    data-hs-tom-select-options='{
+                    "placeholder": "Pilih tipe"
+                  }'
+                                    name="membership_type_id" required>
+                                    @foreach ($membership_types as $membership_type)
+                                        <option value="{{ $membership_type->id }}">{{ $membership_type->nama }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="col-md-12">
+                        <div class="mb-4">
+                            <label for="alamatLabel" class="form-label">Alamat</label>
+                            <textarea name="alamat" id="alamatLabel" class="form-control" placeholder="Alamat lengkap" required>{{ old('alamat') }}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label for="provinsi_idLabel" class="form-label">Provinsi</label>
+
+                            <div class="tom-select-custom">
+                                <select class="js-select form-select" autocomplete="off" id="provinsi_idLabel"
+                                    data-hs-tom-select-options='{
+                    "placeholder": "Pilih tipe"
+                  }'
+                                    name="provinsi_id">
+                                    <option>Pilih..</option>
+                                    @foreach ($provinsis as $provinsi)
+                                        <option value="{{ $provinsi->id }}">{{ $provinsi->name }}</option>
+                                    @endforeach
+                                </select required>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label for="kebupaten_idLabel" class="form-label">Kabupaten/Kota</label>
+
+                            <select class="form-select" autocomplete="off" id="kebupaten_idLabel"
+                                name="kabupaten_id">
+                            </select required>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label for="kecamatan_idLabel" class="form-label">Kecamatan</label>
+
+                            <select class="form-select" autocomplete="off" id="kecamatan_idLabel"
+                                name="kecamatan_id">
+                            </select required>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label for="kelurahan_idLabel" class="form-label">Kelurahan</label>
+
+                            <div class="tom-select-custom">
+                                <select class="form-select" autocomplete="off" id="kelurahan_idLabel"
+                                    name="kelurahan_id" required>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-4">
+                        <label class="row form-check form-switch" for="statusSwitch">
+                            <span class="col-8 col-sm-9 ms-0">
+                                <span class="text-dark">Status <i class="bi-question-circle text-body ms-1"
+                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="Product availability switch toggler."></i></span>
+                            </span>
+                            <span class="col-4 col-sm-3 text-end">
+                                <input type="checkbox" class="form-check-input" id="statusSwitch" name="status"
+                                    value="1" checked>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary w-100">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </x-admin-modal>
 @endsection
 
 @section('script')
@@ -250,5 +395,135 @@
             HSCore.components.HSTomSelect.init('.js-select')
             // HSCore.components.HSFlatpickr.init('.js-flatpickr')
         })()
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on('change', '#provinsi_idLabel', function() {
+                var prov_id = $(this).val();
+
+                var div = $(this).parent();
+
+                var op = " ";
+                $('#kebupaten_idLabel').empty();
+                $('#kecamatan_idLabel').empty();
+
+                $.ajax({
+                    type: 'get',
+                    url: '{!! URL::to('kabupaten-search') !!}',
+                    data: {
+                        'id': prov_id
+                    },
+                    success: function(data) {
+
+                        $("#kebupaten_idLabel").append('<option>Pilih...</option>');
+                        if (data) {
+                            if (data == 0) {
+                                $('#kebupaten_idLabel').empty();
+                                $('#kecamatan_idLabel').empty();
+                            }
+
+                            $.each(data, function(key, value) {
+
+                                $('#kebupaten_idLabel').append($("<option/>", {
+                                    value: value.id,
+                                    text: value.name
+                                }));
+                            });
+                        }
+                    },
+                    error: function() {
+                        console.log('error');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on('change', '#kebupaten_idLabel', function() {
+                var prov_id = $(this).val();
+
+                var div = $(this).parent();
+
+                var op = " ";
+                $('#kecamatan_idLabel').empty();
+                $('#kelurahan_idLabel').empty();
+
+                $.ajax({
+                    type: 'get',
+                    url: '{!! URL::to('kecamatan-search') !!}',
+                    data: {
+                        'id': prov_id
+                    },
+                    success: function(data) {
+                        $("#kecamatan_idLabel").append('<option>Pilih...</option>');
+                        if (data) {
+                            if (data == 0) {
+                                $('#kecamatan_idLabel').empty();
+                                $('#kelurahan_idLabel').empty();
+                                // $('#kelurahan').empty();
+                            }
+
+                            $.each(data, function(key, value) {
+
+                                $('#kecamatan_idLabel').append($("<option/>", {
+                                    value: value.id,
+                                    text: value.name
+                                }));
+                            });
+                        }
+                    },
+                    error: function() {
+                        console.log('error');
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on('change', '#kecamatan_idLabel', function() {
+                var prov_id = $(this).val();
+
+                var div = $(this).parent();
+
+                var op = " ";
+                // $('#kecamatan_idLabel').empty();
+                $('#kelurahan_idLabel').empty();
+
+                $.ajax({
+                    type: 'get',
+                    url: '{!! URL::to('kelurahan-search') !!}',
+                    data: {
+                        'id': prov_id
+                    },
+                    success: function(data) {
+                        $("#kecamatan_idLabel").append('<option>Pilih...</option>');
+                        if (data) {
+                            if (data == 0) {
+                                // $('#kecamatan_idLabel').empty();
+                                $('#kelurahan_idLabel').empty();
+                                // $('#kelurahan').empty();
+                            }
+
+                            $.each(data, function(key, value) {
+
+                                $('#kelurahan_idLabel').append($("<option/>", {
+                                    value: value.id,
+                                    text: value.name
+                                }));
+                            });
+                        }
+                    },
+                    error: function() {
+                        console.log('error');
+                    }
+                });
+            });
+        });
     </script>
 @endsection

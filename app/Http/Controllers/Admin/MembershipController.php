@@ -19,7 +19,7 @@ class MembershipController extends Controller
 
     public function create()
     {
-        $membership_types = MembershipType::orderBy('nama', 'asc')->get();
+        $membership_types = MembershipType::orderBy('nama', 'desc')->get();
         $provinsis = Provinsi::get();
 
         return view('admin.membership.create', compact('membership_types', 'provinsis'));
@@ -89,6 +89,11 @@ class MembershipController extends Controller
             'status' => $request->status,
             'image_url' => $request->image_url ? $image : $membership->image_url,
         ]);
+
+        if($request->order)
+        {
+            return redirect()->back()->with('success', 'Berhasil menambahkan membership');
+        }
 
         return redirect()->route('admin.membership.index')->with('success', 'Berhasil menambahkan membership');
     }

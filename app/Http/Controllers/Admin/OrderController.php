@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Membership;
+use App\Models\MembershipType;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Laravolt\Indonesia\Models\Provinsi;
 
 class OrderController extends Controller
 {
@@ -42,7 +44,10 @@ class OrderController extends Controller
         $products = Product::orderBy('nama', 'asc')->get();
         $carts = \Cart::getContent();
 
-        return view('admin.order.create', compact('memberships', 'products', 'carts'));
+        $membership_types = MembershipType::orderBy('nama', 'desc')->get();
+        $provinsis = Provinsi::get();
+
+        return view('admin.order.create', compact('memberships', 'products', 'carts', 'membership_types', 'provinsis'));
     }
 
     public function edit($id)
