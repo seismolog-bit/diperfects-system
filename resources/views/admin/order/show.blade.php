@@ -3,8 +3,8 @@
 @section('content')
     <x-admin-page-header title='Confirmasi pesanan' subtitle="Formulir konfirmasi pesanan produk">
         <div class="d-flex">
-            <button onclick="location.href='{{ route('admin.order.edit', $order->id) }}'" type="submit" class="btn btn-light me-2"
-                {{ $order->status != 1 ? 'disabled' : '' }}>
+            <button onclick="location.href='{{ route('admin.order.edit', $order->id) }}'" type="submit"
+                class="btn btn-light me-2" {{ $order->status != 1 ? 'disabled' : '' }}>
                 <i class="bi-pencil me-1"></i> Edit pesanan
             </button>
             <a class="btn btn-soft-primary me-2" href="{{ route('admin.order.invoice', $order->id) }}">
@@ -205,7 +205,7 @@
 
 @section('modal')
     <x-admin-modal id="modalPembayaran" title="Mengubah pembayaran">
-        <form action="{{ route('admin.payment.store') }}" method="post">
+        <form action="{{ route('admin.payment.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <input type="hidden" name="order_id" value="{{ $order->id }}">
@@ -229,10 +229,16 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-4">
-                <label for="tanggal_transaksiLabel" class="form-label">Tanggal transaksi</label>
-                <input type="date" class="form-control" id="tanggal_transaksiLabel"
-                    value="{{ now()->format('Y-m-d') }}" name="tanggal_transaksi">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <label for="tanggal_transaksiLabel" class="form-label">Tanggal transaksi</label>
+                    <input type="date" class="form-control" id="tanggal_transaksiLabel"
+                        value="{{ now()->format('Y-m-d') }}" name="tanggal_transaksi">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label for="lampiranLabel" class="form-label">Lampiran</label>
+                    <input type="file" class="form-control" id="lampiranLabel" name="lampiran" required>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-4">
@@ -258,6 +264,7 @@
                     <th scope="col">Transfer</th>
                     <th scope="col">Cash</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Lampiran</th>
                 </tr>
             </thead>
             <tbody>
@@ -268,6 +275,31 @@
                         <td class="text-end">{{ number_format($payment->payment_cash) }}</td>
                         <td class="{{ $payment->type ? '' : 'text-danger' }}">
                             {{ $payment->type ? 'Tambah pembayaran' : 'Pengurangan pembayaran' }}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-white btn-sm"
+                                href="{{ asset($payment->lampiran) }}" target="__blank">
+                                    <i class="bi-eye me-1"></i> Lampiran
+                                </a>
+                                <div class="btn-group">
+                                    <button type="button"
+                                        class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"
+                                        id="productsEditDropdown8" data-bs-toggle="dropdown"
+                                        aria-expanded="false"></button>
+
+                                    <div class="dropdown-menu dropdown-menu-end mt-1"
+                                        aria-labelledby="productsEditDropdown8">
+                                        <form action="{{ route('admin.payment.destroy', $payment) }}" method="post"
+                                            onsubmit="return confirm('Anda yakin ingin menghapus pembayaran ini?')">
+                                            @csrf @method('delete')
+                                            <button class="dropdown-item" type="submit">
+                                                <i class="bi-trash dropdown-item-icon"></i> Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 @empty
                     <tr>

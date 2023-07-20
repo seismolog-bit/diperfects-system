@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('qty');
             $table->decimal('harga', 16,0);
             $table->decimal('diskon', 16,0);
-            $table->decimal('total');
+            $table->decimal('total', 16,0);
             $table->timestamps();
         });
     }

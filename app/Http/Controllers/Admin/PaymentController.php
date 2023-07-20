@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PaymentController extends Controller
 {
@@ -17,10 +18,35 @@ class PaymentController extends Controller
 
         $order = Order::findOrFail($request->order_id);
 
+        if($request->id)
+        {
+            $payment = Payment::findOrFail($request->id);
+        }
+
         $payment_cash = $request->payment_cash ?? 0;
         $payment_transfer = $request->payment_transfer ?? 0;
 
-        $payment = Payment::updateOrCreate([
+        if($request->lampiran)
+        {
+            // upload foto
+            $dir = 'media/payments/';
+            $url = $request->file('lampiran');
+            $extention = Str::lower($url->getClientOriginalExtension());
+            $file_name = time() . '.' . $extention;
+
+            // image resize
+            $image_file = \Image::make($url->getRealPath());
+            $image_file->resize(720, null, function($const) {
+                $const->aspectRatio();
+            });
+
+            $destination_path = public_path($dir);
+            $url->move($destination_path, $file_name);
+
+            $image = $dir . $file_name;
+        }
+
+        Payment::updateOrCreate([
             'id' => $request->id,
         ], [
             'order_id' => $order->id,
@@ -28,22 +54,31 @@ class PaymentController extends Controller
             'payment_transfer' => $payment_transfer,
             'type' => $request->type,
             'tanggal_transaksi' => $request->tanggal_transaksi,
+            'lampiran' => $request->lampiran ? $image : $payment->lampiran
         ]);
 
-        if($payment->type){
-            $order->payment_cash = $order->payment_cash + $payment_cash;
-            $order->payment_transfer = $order->payment_transfer + $payment_transfer;
-        }else{
-            $order->payment_cash = $order->payment_cash - $payment_cash;
-            $order->payment_transfer = $order->payment_transfer - $payment_transfer;
-        }
-
-        $order->save();
+        $this->order_payment($order->id);
 
         return redirect()->back();
     }
 
     public function destroy(Payment $payment)
     {
+        $payment->delete();
+
+        $this->order_payment($payment->order_id);
+
+        return redirect()->back();
+    }
+
+    public function order_payment($id)
+    {
+        $order = Order::findOrFail($id);
+        $payments = Payment::where('order_id', $order->id)->get();
+
+        $order->payment_cash = $payments->sum('payment_cash');
+        $order->payment_transfer = $payments->sum('payment_transfer');
+
+        $order->save();
     }
 }

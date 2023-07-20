@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('payment_transfer', 16, 0)->default(0);
             $table->boolean('type')->default(1);
             $table->date('tanggal_transaksi');
+            $table->string('lampiran')->nullable();
             $table->timestamps();
         });
     }

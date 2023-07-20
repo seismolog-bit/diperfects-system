@@ -109,7 +109,7 @@
                                 }'>
                                     {{-- <option value="">Pilih membership...</option> --}}
                                     @foreach ($memberships as $membership)
-                                        <option value="{{ $membership->id }}">{{ $membership->nama }}</option>
+                                        <option value="{{ $membership->id }}" {{old('membership_id') == $membership->id ? 'selected' : ''}}>{{ $membership->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -120,20 +120,20 @@
 
                             <input type="date" class="js-flatpickr form-control flatpickr-custom" id="tanggal_orderLabel" name="tanggal_order" data-hs-flatpickr-options='{
                                 "dateFormat": "d/m/Y"
-                              }' value="{{ now()->format('Y-m-d') }}">
+                              }' value="{{ old('tanggal_order') ?? now()->format('Y-m-d') }}">
                         </div>
 
                         <div class="mb-4">
                             <label for="ongkirLabel" class="form-label">Biaya Pengiriman</label>
 
                             <input type="number" class="form-control" id="ongkirLabel" placeholder="cth. 10000"
-                                name="ongkir" aria-label="cth. 10000">
+                                name="ongkir" aria-label="cth. 10000" value="{{old('ongkir')}}">
                         </div>
 
                         <div class="mb-4">
                             <label for="noteLabel" class="form-label">Catatan</label>
 
-                            <textarea type="text" class="form-control" id="noteLabel" placeholder="Catatan pesanan" name="note"></textarea>
+                            <textarea type="text" class="form-control" id="noteLabel" placeholder="Catatan pesanan" name="note" required>{{old('note')}}</textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100">Konfirmasi Pesanan</button>

@@ -66,7 +66,8 @@
                                     <div class="col col-md-3 align-self-center text-end d-flex">
                                         <input type="text" name="total" class="form-control me-2"
                                             value="{{ number_format($item->total) }}" disabled>
-                                        <form action="{{ route('admin.order-item.destroy', $item->id) }}" method="post" onsubmit="return confirm('Anda yakin ingin menghapus item ini?')">
+                                        <form action="{{ route('admin.order-item.destroy', $item->id) }}" method="post"
+                                            onsubmit="return confirm('Anda yakin ingin menghapus item ini?')">
                                             @csrf @method('delete')
                                             <button type="submit" class="btn btn-soft-danger"><i class="bi-trash"></i>
                                             </button>
@@ -241,10 +242,16 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-4">
-                <label for="tanggal_transaksiLabel" class="form-label">Tanggal transaksi</label>
-                <input type="date" class="form-control" id="tanggal_transaksiLabel"
-                    value="{{ now()->format('Y-m-d') }}" name="tanggal_transaksi">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <label for="tanggal_transaksiLabel" class="form-label">Tanggal transaksi</label>
+                    <input type="date" class="form-control" id="tanggal_transaksiLabel"
+                        value="{{ now()->format('Y-m-d') }}" name="tanggal_transaksi">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label for="lampiranLabel" class="form-label">Lampiran</label>
+                    <input type="file" class="form-control" id="lampiranLabel" name="lampiran" required>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-4">
@@ -270,6 +277,7 @@
                     <th scope="col">Transfer</th>
                     <th scope="col">Cash</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Lampiran</th>
                 </tr>
             </thead>
             <tbody>
@@ -280,6 +288,31 @@
                         <td class="text-end">{{ number_format($payment->payment_cash) }}</td>
                         <td class="{{ $payment->type ? '' : 'text-danger' }}">
                             {{ $payment->type ? 'Tambah pembayaran' : 'Pengurangan pembayaran' }}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-white btn-sm"
+                                href="{{ asset($payment->lampiran) }}" target="__blank">
+                                    <i class="bi-eye me-1"></i> Lampiran
+                                </a>
+                                <div class="btn-group">
+                                    <button type="button"
+                                        class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"
+                                        id="productsEditDropdown8" data-bs-toggle="dropdown"
+                                        aria-expanded="false"></button>
+
+                                    <div class="dropdown-menu dropdown-menu-end mt-1"
+                                        aria-labelledby="productsEditDropdown8">
+                                        <form action="{{ route('admin.payment.destroy', $payment) }}" method="post"
+                                            onsubmit="return confirm('Anda yakin ingin menghapus pembayaran ini?')">
+                                            @csrf @method('delete')
+                                            <button class="dropdown-item" type="submit">
+                                                <i class="bi-trash dropdown-item-icon"></i> Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 @empty
                     <tr>
@@ -343,7 +376,7 @@
                         @forelse ($products as $product)
                             <tr>
                                 <td>
-                                    <p class="h5">{{$product->nama}}</p>
+                                    <p class="h5">{{ $product->nama }}</p>
                                 </td>
                                 <td>
                                     <form action="{{ route('admin.order-item.store') }}" class="d-flex" method="post">
@@ -351,7 +384,8 @@
                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                                         <input type="hidden" name="order_id" value="{{ $order->id }}">
 
-                                        <input type="number" class="form-control me-2 text-end" name="harga" value="{{$product->harga}}" required>
+                                        <input type="number" class="form-control me-2 text-end" name="harga"
+                                            value="{{ $product->harga }}" required>
 
                                         <input type="number" class="form-control me-2 text-end" name="qty" required>
                                         <button type="submit" class="btn btn-soft-primary btn-sm"><i

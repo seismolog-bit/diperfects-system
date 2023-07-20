@@ -61,11 +61,16 @@ class OrderController extends Controller
             'tanggal_order' => 'required'
         ]);
 
+        $carts = \Cart::getContent();
+
+        if($carts->isEmpty()){
+            return redirect()->back()->with('error', 'Produk kosong');
+        }
+
         $membership = Membership::findOrFail($request->membership_id);
         $ongkir = $request->ongkir ?? 0;
         $note = $request->note ?? '';
         $tanggal_order = $request->tanggal_order;
-        $carts = \Cart::getContent();
 
         return view('admin.order.confirm', compact('membership', 'ongkir', 'carts', 'note', 'tanggal_order'));
     }

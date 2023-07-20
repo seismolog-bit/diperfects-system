@@ -23,7 +23,7 @@
 
                             <input type="text" class="form-control" name="nama" id="namaLabel"
                                 placeholder="cth. Juna Eau De Parfum" aria-label="cth. Juna Eau De Parfum"
-                                value="{{ old('nama') ?? '' }}">
+                                value="{{ old('nama') ?? '' }}" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>

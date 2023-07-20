@@ -16,7 +16,8 @@ class Payment extends Model
         'payment_cash',
         'payment_transfer',
         'type',
-        'tanggal_transaksi'
+        'tanggal_transaksi',
+        'lampiran'
     ];
 
     public function order()
