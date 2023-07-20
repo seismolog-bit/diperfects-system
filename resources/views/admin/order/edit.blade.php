@@ -218,7 +218,7 @@
 
 @section('modal')
     <x-admin-modal id="modalPembayaran" title="Mengubah pembayaran">
-        <form action="{{ route('admin.payment.store') }}" method="post">
+        <form action="{{ route('admin.payment.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <input type="hidden" name="order_id" value="{{ $order->id }}">
@@ -250,7 +250,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <label for="lampiranLabel" class="form-label">Lampiran</label>
-                    <input type="file" class="form-control" id="lampiranLabel" name="lampiran" required>
+                    <input type="file" class="form-control" id="lampiranLabel" name="lampiran">
                 </div>
             </div>
             <div class="row">
