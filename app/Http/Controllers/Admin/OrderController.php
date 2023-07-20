@@ -15,7 +15,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with('membership')->orderBy('tanggal_order', 'asc')->get();
+        $orders = Order::with('membership')->orderBy('tanggal_order', 'desc')->get();
 
         // dd($orders[0]);
 
