@@ -21,6 +21,7 @@ class PaymentController extends Controller
         if($request->id)
         {
             $payment = Payment::findOrFail($request->id);
+            $image = $payment->lampiran;
         }
 
         $payment_cash = $request->payment_cash ?? 0;
@@ -54,7 +55,7 @@ class PaymentController extends Controller
             'payment_transfer' => $payment_transfer,
             'type' => $request->type,
             'tanggal_transaksi' => $request->tanggal_transaksi,
-            'lampiran' => $request->lampiran ? $image : $payment->lampiran
+            'lampiran' => $request->lampiran ? $image : ''
         ]);
 
         $this->order_payment($order->id);
