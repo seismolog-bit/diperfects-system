@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\OrderItemController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -45,4 +46,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('membership', MembershipController::class);
     Route::resource('member-type', MembershipTypeController::class);
     Route::resource('user', UserController::class);
+
+    Route::get('reports', [ReportController::class, 'index'])->name('report.index');
+    Route::get('reports/finance', [ReportController::class, 'finance'])->name('report.finance');
 });

@@ -59,6 +59,23 @@
             </a>
         </div>
 
+        <span class="dropdown-header mt-4">Laporan</span>
+        <small class="bi-three-dots nav-subtitle-replacer"></small>
+        <div class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.report.index') ? 'active' : '' }}"
+                href="{{ route('admin.report.index') }}" data-placement="left">
+                <i class="bi-file-earmark-spreadsheet nav-icon"></i>
+                <span class="nav-link-title">Transaksi</span>
+            </a>
+        </div>
+        <div class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.report.finance') ? 'active' : '' }}"
+                href="{{ route('admin.report.finance') }}" data-placement="left">
+                <i class="bi-credit-card nav-icon"></i>
+                <span class="nav-link-title">Keuangan</span>
+            </a>
+        </div>
+
         <span class="dropdown-header mt-4">User</span>
         <small class="bi-three-dots nav-subtitle-replacer"></small>
 

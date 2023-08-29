@@ -10,6 +10,7 @@ class Payment extends Model
     use HasFactory;
 
     protected $table = 'payments';
+    protected $dates = ['tanggal_transaksi'];
 
     protected $fillable = [
         'order_id',
