@@ -49,4 +49,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('reports', [ReportController::class, 'index'])->name('report.index');
     Route::get('reports/finance', [ReportController::class, 'finance'])->name('report.finance');
+    Route::get('reports/products', [ReportController::class, 'reportProducts'])->name('report.reportProducts');
+
+    Route::get('reports/products/{id}', [ReportController::class, 'reportProduct'])->name('report.reportProduct');
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Payment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -47,5 +48,31 @@ class ReportController extends Controller
 
 
         return view('admin.report.finance', compact('payments', 'dates', 'startDate', 'endDate', 'orders'));
+    }
+
+    public function reportProducts()
+    {
+        $item_orders = OrderItem::all();
+
+        dd($item_orders);
+    }
+
+    public function reportProduct(Request $request, $id)
+    {
+        $startDate = Carbon::now()->startOfMonth();
+        $endDate = Carbon::now()->endOfDay();
+
+        // dd($request->dates);
+
+        if($request->date)
+        {
+            $dates = explode(' - ', $request->dates);
+            $startDate = Carbon::parse($dates[0]);
+            $endDate = Carbon::parse($dates[1] . ' 23:59:59');
+        }
+
+        $item_orders = OrderItem::where('product_id', $id)->whereBetween('created_at', [$startDate, $endDate])->get();
+
+        dd($item_orders->count());
     }
 }
