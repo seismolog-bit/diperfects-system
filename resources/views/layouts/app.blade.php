@@ -24,18 +24,18 @@
 
     <!-- Meta Shopee Online Shop -->
     @if (!empty($product))
-        <meta property="og:site_name" content="Diperfects Official Shopee">
+        {{-- <meta property="og:site_name" content="Diperfects Official Shopee"> --}}
         <meta property="og:type" content="product">
         <meta property="product:price:amount" content="{{ $product->harga }}">
         <meta property="product:price:currency" content="IDR">
         <meta property="product:availability" content="Tersedia">
 
 
-        <meta property="og:site_name" content="Diperfects Official Tokopedia">
-        <meta property="og:type" content="product">
+        {{-- <meta property="og:site_name" content="Diperfects Official Tokopedia"> --}}
+        {{-- <meta property="og:type" content="product">
         <meta property="product:price:amount" content="{{ $product->harga }}">
         <meta property="product:price:currency" content="IDR">
-        <meta property="product:availability" content="Tersedia">
+        <meta property="product:availability" content="Tersedia"> --}}
     @endif
 
     <!-- Meta Keywords -->
