@@ -4,42 +4,46 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>@yield('title') - DI' Perfects Beauty & Authentic Perfume</title>
+    <title>@yield('title') - DI' Perfects Produk Skincare dan Parfum Berkualitas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Meta Deskripsi Website -->
-    <meta name="description"
-        content="Diperfects adalah destinasi terpercaya untuk produk skincare dan parfum berkualitas. Temukan kecantikan sejati melalui rangkaian produk perawatan kulit premium dan aroma parfum yang memikat. Keindahan alami dimulai dari sini.">
-
-    <!-- Meta Media Sosial -->
-    <meta property="og:title" content="@yield('title') - Produk Skincare dan Parfum Berkualitas">
-    <meta property="og:description"
-        content="Diperfects adalah destinasi terpercaya untuk produk skincare dan parfum berkualitas. Temukan kecantikan sejati melalui rangkaian produk perawatan kulit premium dan aroma parfum yang memikat. Keindahan alami dimulai dari sini.">
-    <meta property="og:image" content="{{ asset('img/logo/logo-only.png') }}">
-    <meta property="og:url" content="{{ route('index') }}">
-
-    <!-- Meta Maps Lokasi -->
-    <meta name="geo.placename" content="DI' Perfects Beauty & Authentic Perfume">
-    <meta name="geo.position" content="-6.3521344;106.5727938">
+    <!-- Meta Keywords -->
+    <meta name="keywords" content="DI Perfects Beauty, Authentic Perfume, Beauty Products, Perfume, Fragrance, Luxury Beauty, produk skincare, parfum, kecantikan, perawatan kulit, keindahan">
 
     <!-- Meta Shopee Online Shop -->
-    @if (!empty($product))
-        {{-- <meta property="og:site_name" content="Diperfects Official Shopee"> --}}
+    @if (request()->routeIs('product.show'))
+        <meta property="og:title"
+            content="{{ $product->nama . ' ' . $product->kategori->nama }} - DI' Perfects Produk Skincare dan Parfum Berkualitas">
+        <meta property="og:description" content="{!! strip_tags(Str::limit($product->deskripsi, 150)) !!}">
+
         <meta property="og:type" content="product">
         <meta property="product:price:amount" content="{{ $product->harga }}">
         <meta property="product:price:currency" content="IDR">
         <meta property="product:availability" content="Tersedia">
 
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title"
+            content="{{ $product->nama . ' ' . $product->kategori->nama }} - DI' Perfects Produk Skincare dan Parfum Berkualitas">
+        <meta name="twitter:description" content="{!! strip_tags(Str::limit($product->deskripsi, 150)) !!}">
+        <meta name="twitter:image" content="{{ asset($product->image_url) }}">
+    @else
+        <meta property="og:title" content="@yield('title') - DI' Perfects Produk Skincare dan Parfum Berkualitas">
+        <meta property="og:description"
+            content="Diperfects adalah destinasi terpercaya untuk produk skincare dan parfum berkualitas. Temukan kecantikan sejati melalui rangkaian produk perawatan kulit premium dan aroma parfum yang memikat. Keindahan alami dimulai dari sini.">
 
-        {{-- <meta property="og:site_name" content="Diperfects Official Tokopedia"> --}}
-        {{-- <meta property="og:type" content="product">
-        <meta property="product:price:amount" content="{{ $product->harga }}">
-        <meta property="product:price:currency" content="IDR">
-        <meta property="product:availability" content="Tersedia"> --}}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="@yield('title') - DI' Perfects Produk Skincare dan Parfum Berkualitas">
+        <meta name="twitter:description"
+            content="Diperfects adalah destinasi terpercaya untuk produk skincare dan parfum berkualitas. Temukan kecantikan sejati melalui rangkaian produk perawatan kulit premium dan aroma parfum yang memikat. Keindahan alami dimulai dari sini.">
+        <meta name="twitter:image" content="{{ asset('img/logo/logo-only.png') }}">
     @endif
 
-    <!-- Meta Keywords -->
-    <meta name="keywords" content="produk skincare, parfum, kecantikan, perawatan kulit, keindahan">
+    <meta property="og:url" content="{{ request()->fullUrl() }}">
+
+    <!-- Meta Maps Lokasi -->
+    <meta name="geo.placename" content="DI' Perfects Beauty & Authentic Perfume">
+    <meta name="geo.position" content="-6.3521344;106.5727938">
+
 
     <!-- Meta SEO Google -->
     <meta name="robots" content="index, follow">
