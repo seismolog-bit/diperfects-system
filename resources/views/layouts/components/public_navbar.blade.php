@@ -10,8 +10,8 @@
                     @endforeach
                 </ul>
             </li>
-            <li><a href="contact.html">Tentang Kami</a></li>
-            <li><a href="contact.html">Kontak</a></li>
+            <li><a href="{{route('about')}}">Tentang Kami</a></li>
+            <li><a href="{{route('contact')}}">Kontak</a></li>
         </ul>
     </nav>
 </div>

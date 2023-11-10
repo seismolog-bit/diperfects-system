@@ -254,7 +254,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-2 col-lg-5 col-md-5 col-sm-4 col-6">
                                 <div class="logo">
-                                    <a href="{{route('index')}}">
+                                    <a href="{{ route('index') }}">
                                         <img src="{{ asset('/') }}img/logo/logo.png" alt="logo">
                                     </a>
                                 </div>
@@ -596,11 +596,11 @@
             <div class="tp-footer-top pt-95 pb-40">
                 <div class="container">
                     <div class="row">
-                        <div class="col-xl-4 col-lg-3 col-md-4 col-sm-6">
+                        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12">
                             <div class="tp-footer-widget footer-col-1 mb-50">
                                 <div class="tp-footer-widget-content">
                                     <div class="tp-footer-logo">
-                                        <a href="{{route('index')}}">
+                                        <a href="{{ route('index') }}">
                                             <img src="{{ asset('/') }}img/logo/logo.png" alt="logo">
                                         </a>
                                     </div>
@@ -615,7 +615,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                        {{-- <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
                             <div class="tp-footer-widget footer-col-2 mb-50">
                                 <h4 class="tp-footer-widget-title">My Account</h4>
                                 <div class="tp-footer-widget-content">
@@ -629,18 +629,18 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                             <div class="tp-footer-widget footer-col-3 mb-50">
                                 <h4 class="tp-footer-widget-title">Infomation</h4>
                                 <div class="tp-footer-widget-content">
                                     <ul>
-                                        <li><a href="#">Our Story</a></li>
+                                        {{-- <li><a href="#">Our Story</a></li> --}}
                                         <li><a href="#">Careers</a></li>
                                         <li><a href="#">Privacy Policy</a></li>
                                         <li><a href="#">Terms & Conditions</a></li>
-                                        <li><a href="#">Latest News</a></li>
-                                        <li><a href="#">Contact Us</a></li>
+                                        {{-- <li><a href="#">Latest News</a></li> --}}
+                                        <li><a href="{{route('contact')}}">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -651,7 +651,7 @@
                                 <div class="tp-footer-widget-content">
                                     <div class="tp-footer-talk mb-20">
                                         <span>Got Questions? Call us</span>
-                                        <h4><a href="tel:670-413-90-762">+670 413 90 762</a></h4>
+                                        <h4><a href="tel:+6282161416162">+628 21-6141-6162</a></h4>
                                     </div>
                                     <div class="tp-footer-contact">
                                         <div class="tp-footer-contact-item d-flex align-items-start">
@@ -679,7 +679,9 @@
                                                 </span>
                                             </div>
                                             <div class="tp-footer-contact-content">
-                                                <p><a href="mailto:shofy@support.com">shofy@support.com</a></p>
+                                                <p><a
+                                                        href="mailto:kontakdiperfects@gmail.com">kontakdiperfects@gmail.com</a>
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="tp-footer-contact-item d-flex align-items-start">
@@ -697,9 +699,10 @@
                                                 </span>
                                             </div>
                                             <div class="tp-footer-contact-content">
-                                                <p><a href="https://www.google.com/maps/place/Sleepy+Hollow+Rd,+Gouverneur,+NY+13642,+USA/@44.3304966,-75.4552367,17z/data=!3m1!4b1!4m6!3m5!1s0x4cccddac8972c5eb:0x56286024afff537a!8m2!3d44.3304928!4d-75.453048!16s%2Fg%2F1tdsjdj4"
-                                                        target="_blank">79 Sleepy Hollow St. <br> Jamaica, New York
-                                                        1432</a></p>
+                                                <p>
+                                                    <a href="https://www.google.com/maps/place/D'Perfect+Skin+Care/@-6.352201,106.5752241,21z/data=!4m6!3m5!1s0x2e69e3b34cf5a023:0xd2180ed9b054637d!8m2!3d-6.3521397!4d106.5753687!16s%2Fg%2F11t833_7fv?entry=ttu"
+                                                        target="_blank">Sentraland Paradise RC-19<br> Parung Panjang, Bogor 16360</a>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -715,8 +718,7 @@
                         <div class="row align-items-center">
                             <div class="col-md-6">
                                 <div class="tp-footer-copyright">
-                                    <p>© 2023 All Rights Reserved | HTML Template by <a
-                                            href="{{route('index')}}">Themepure</a>.</p>
+                                    <p>© 2023 All Rights Reserved | Made with love DI' Perfects.</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
