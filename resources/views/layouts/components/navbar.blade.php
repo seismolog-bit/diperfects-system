@@ -23,7 +23,7 @@
             </a>
 
             <div id="navbarVerticalMenuProducts"
-                class="nav-collapse collapse {{ request()->routeIs(['admin.product.*', 'admin.kategori.*']) ? 'show' : '' }}"
+                class="nav-collapse collapse {{ request()->routeIs(['admin.product.*', 'admin.kategori.*', 'admin.feature.*']) ? 'show' : '' }}"
                 data-bs-parent="#navbarVerticalMenu">
                 <a class="nav-link {{ request()->routeIs('admin.product.index') ? 'active' : '' }}"
                     href="{{ route('admin.product.index') }}">Daftar Produk</a>
@@ -31,6 +31,8 @@
                     href="{{ route('admin.product.create') }}">Tambah Produk</a>
                 <a class="nav-link {{ request()->routeIs('admin.kategori.*') ? 'active' : '' }}"
                     href="{{ route('admin.kategori.index') }}">Kategori</a>
+                    <a class="nav-link {{ request()->routeIs('admin.feature.*') ? 'active' : '' }}"
+                        href="{{ route('admin.feature.index') }}">Feature</a>
             </div>
         </div>
 

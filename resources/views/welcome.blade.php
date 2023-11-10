@@ -5,7 +5,7 @@
     <section class="tp-slider-area p-relative z-index-1">
         <div class="tp-slider-active-2 swiper-container">
             <div class="swiper-wrapper">
-                @foreach ($features as $product)
+                @foreach ($features as $feature)
                 <div class="tp-slider-item-2 tp-slider-height-2 p-relative swiper-slide grey-bg-5 d-flex align-items-end">
                     <div class="tp-slider-2-shape">
                         <img class="tp-slider-2-shape-1" src="{{ asset('/') }}img/slider/2/shape/shape-1.png"
@@ -16,9 +16,9 @@
                             <div class="col-xl-6 col-lg-6 col-md-6">
                                 <div class="tp-slider-content-2">
                                     <span>Feature</span>
-                                    <h3 class="tp-slider-title-2">{{$product->nama}}</h3>
+                                    <h3 class="tp-slider-title-2">{{$feature->product->nama}}</h3>
                                     <div class="tp-slider-btn-2">
-                                        <a href="shop.html" class="tp-btn tp-btn-border">Shop Collection</a>
+                                        <a href="{{route('product.index', ['category' => $feature->product->kategori->slug])}}" class="tp-btn tp-btn-border">{{$feature->product->kategori->nama}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="tp-slider-thumb-2 text-end">
                                         <span class="tp-slider-thumb-2-gradient"></span>
-                                        <img src="{{ asset('/') }}img/slider/2/slider-1.png" alt="">
+                                        <img src="{{ asset($feature->image_url) }}" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -120,15 +120,15 @@
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                                             <div class="tp-product-item-2 mb-40">
                                                 <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img rounded">
-                                                    <a href="{{ $product->slug }}">
+                                                    <a href="{{ route('product.show', $product) }}">
                                                         <img src="{{ asset($product->image_url) }}" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="tp-product-content-2 pt-15">
-                                                    <a href="#"
+                                                    <a href="{{route('product.index', ['category' => $product->kategori->slug])}}"
                                                         class="tp-product-tag-2">{{ $product->kategori->nama }}</a>
                                                     <h3 class="tp-product-title-2 mb-3">
-                                                        <a href="{{ $product->slug }}">{{ $product->nama }}</a>
+                                                        <a href="{{ route('product.show', $product) }}">{{ $product->nama }}</a>
                                                     </h3>
                                                     <div class="tp-product-price-wrapper-2">
                                                         <span
@@ -174,16 +174,16 @@
                                         <div class="tp-trending-item swiper-slide">
                                             <div class="tp-product-item-2">
                                                 <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img rounded">
-                                                    <a href="product-details.html">
+                                                    <a href="{{route('product.show', $product)}}">
                                                         <img src="{{ asset($product->image_url) }}" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="tp-product-content-2 pt-15">
                                                     <div class="tp-product-tag-2">
-                                                        <a href="#">{{ $product->kategori->nama }}</a>
+                                                        <a href="{{route('product.index', ['category' => $product->kategori->slug])}}">{{ $product->kategori->nama }}</a>
                                                     </div>
                                                     <h3 class="tp-product-title-2">
-                                                        <a href="product-details.html">{{ $product->nama }}</a>
+                                                        <a href="{{route('product.show', $product)}}">{{ $product->nama }}</a>
                                                     </h3>
                                                     {{-- <div class="tp-product-rating-icon tp-product-rating-icon-2">
                                                     <span><i class="fa-solid fa-star"></i></span>
@@ -214,10 +214,10 @@
                         </div>
                         <div class="tp-trending-banner-content">
                             <h3 class="tp-trending-banner-title">
-                                <a href="shop.html">Short Sleeve Tunic <br> Tops Casual Swing</a>
+                                <a href="{{route('product.index')}}">Short Sleeve Tunic <br> Tops Casual Swing</a>
                             </h3>
                             <div class="tp-trending-banner-btn">
-                                <a href="shop.html"
+                                <a href="{{route('product.index')}}"
                                     class="tp-btn tp-btn-border tp-btn-border-white tp-btn-border-white-sm">
                                     Explore More
                                     <svg width="17" height="15" viewBox="0 0 17 15" fill="none"
@@ -261,7 +261,7 @@
                     <div class="col-xl-3 col-lg-4 col-sm-6">
                         <div class="tp-product-item-2 mb-40">
                             <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img rounded">
-                                <a href="product-details.html">
+                                <a href="{{route('product.show', $product)}}">
                                     <img src="{{ asset($product->image_url) }}" alt="">
                                 </a>
 
@@ -271,7 +271,7 @@
                                     <a href="#">{{ $product->kategori->nama }}</a>
                                 </div>
                                 <h3 class="tp-product-title-2">
-                                    <a href="product-details.html">{{ $product->nama }}</a>
+                                    <a href="{{route('product.show', $product)}}">{{ $product->nama }}</a>
                                 </h3>
                                 {{-- <div class="tp-product-rating-icon tp-product-rating-icon-2">
                                 <span><i class="fa-solid fa-star"></i></span>
@@ -292,7 +292,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="tp-seller-more text-center mt-10">
-                        <a href="shop.html" class="tp-btn tp-btn-border tp-btn-border-sm">Shop All Product</a>
+                        <a href="{{route('product.index')}}" class="tp-btn tp-btn-border tp-btn-border-sm">Shop All Product</a>
                     </div>
                 </div>
             </div>

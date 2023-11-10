@@ -11,7 +11,7 @@
 
                 <h1>Hello, nice to see you!</h1>
                 <p>You are now minutes away from creativity than ever before. Enjoy!</p>
-                <p>Version : Beta + 0.1</p>
+                <p>Version : Beta + 0.2</p>
             </div>
         </div>
     </div>

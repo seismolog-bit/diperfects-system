@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\MembershipController;
@@ -33,6 +34,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('membership', MembershipController::class);
     Route::resource('member-type', MembershipTypeController::class);
     Route::resource('user', UserController::class);
+
+    Route::resource('feature', FeatureController::class);
 
     Route::get('reports', [ReportController::class, 'index'])->name('report.index');
     Route::get('reports/finance', [ReportController::class, 'finance'])->name('report.finance');
