@@ -29,21 +29,20 @@
     @else
         <meta property="og:title" content="@yield('title') - DI' Perfects Produk Skincare dan Parfum Berkualitas">
         <meta property="og:description"
-            content="Diperfects adalah destinasi terpercaya untuk produk skincare dan parfum berkualitas. Temukan kecantikan sejati melalui rangkaian produk perawatan kulit premium dan aroma parfum yang memikat. Keindahan alami dimulai dari sini.">
+            content="Diperfects adalah pilihan terpercaya untuk produk skincare dan parfum berkualitas. Temukan kecantikan sejati melalui rangkaian produk perawatan kulit premium dan aroma parfum yang memikat. Keindahan alami dimulai dari sini.">
 
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="@yield('title') - DI' Perfects Produk Skincare dan Parfum Berkualitas">
         <meta name="twitter:description"
-            content="Diperfects adalah destinasi terpercaya untuk produk skincare dan parfum berkualitas. Temukan kecantikan sejati melalui rangkaian produk perawatan kulit premium dan aroma parfum yang memikat. Keindahan alami dimulai dari sini.">
+            content="Diperfects adalah pilihan terpercaya untuk produk skincare dan parfum berkualitas. Temukan kecantikan sejati melalui rangkaian produk perawatan kulit premium dan aroma parfum yang memikat. Keindahan alami dimulai dari sini.">
         <meta name="twitter:image" content="{{ asset('img/logo/logo-only.png') }}">
     @endif
 
     <meta property="og:url" content="{{ request()->fullUrl() }}">
 
     <!-- Meta Maps Lokasi -->
-    <meta name="geo.placename" content="DI' Perfects Beauty & Authentic Perfume">
-    <meta name="geo.position" content="-6.3521344;106.5727938">
-
+    <meta name="geo.placename" content="DI' Perfects Beauty and Authentic Perfume">
+    <meta name="geo.position" content="-6.3521397;106.5753687">
 
     <!-- Meta SEO Google -->
     <meta name="robots" content="index, follow">
@@ -110,7 +109,7 @@
     <!-- offcanvas area start -->
     <div class="offcanvas__area offcanvas__style-darkRed">
         <div class="offcanvas__wrapper">
-            {{-- <div class="offcanvas__close">
+            <div class="offcanvas__close">
                 <button class="offcanvas__close-btn offcanvas-close-btn">
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -120,7 +119,7 @@
                             stroke-linejoin="round" />
                     </svg>
                 </button>
-            </div> --}}
+            </div>
             <div class="offcanvas__content">
                 <div class="offcanvas__top mb-70 d-flex justify-content-between align-items-center">
                     <div class="offcanvas__logo logo">
@@ -143,20 +142,20 @@
                 <div class="offcanvas__contact align-items-center d-none">
                     <div class="offcanvas__contact-icon mr-20">
                         <span>
-                            <img src="{{ asset('/') }}img/icon/contact.png" alt="">
+                            <img src="{{ asset('img/icon/contact.png') }}" alt="">
                         </span>
                     </div>
                     <div class="offcanvas__contact-content">
                         <h3 class="offcanvas__contact-title">
-                            <a href="tel:098-852-987">004524865</a>
+                            <a href="tel:+6282161416162">+62 821-6141-6162</a>
                         </h3>
                     </div>
                 </div>
                 <div class="offcanvas__btn">
-                    <a href="contact.html" class="tp-btn-2 tp-btn-border-2">Contact Us</a>
+                    <a href="{{route('contact')}}" class="tp-btn-2 tp-btn-border-2">Contact Us</a>
                 </div>
             </div>
-            <div class="offcanvas__bottom">
+            {{-- <div class="offcanvas__bottom">
                 <div class="offcanvas__footer d-flex align-items-center justify-content-between">
                     <div class="offcanvas__currency-wrapper currency">
                         <span class="offcanvas__currency-selected-currency tp-currency-toggle"
@@ -186,7 +185,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     <div class="body-overlay"></div>
@@ -648,13 +647,10 @@
                                             <img src="{{ asset('/') }}img/logo/logo.png" alt="logo">
                                         </a>
                                     </div>
-                                    <p class="tp-footer-desc">We are a team of designers and developers that create
-                                        high quality WordPress</p>
+                                    <p class="text-muted">Diperfects adalah pilihan terpercaya untuk produk skincare dan parfum berkualitas. Temukan kecantikan sejati melalui rangkaian produk perawatan kulit premium dan aroma parfum yang memikat. Keindahan alami dimulai dari sini.</p>
                                     <div class="tp-footer-social">
-                                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                                        <a href="#"><i class="fa-brands fa-vimeo-v"></i></a>
+                                        <a href="https://www.instagram.com/diperfects_official/"><i class="fa-brands fa-instagram"></i></a>
+                                        <a href="https://www.tiktok.com/@diperfects_official"><i class="fa-brands fa-tiktok"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -744,7 +740,7 @@
                                             </div>
                                             <div class="tp-footer-contact-content">
                                                 <p>
-                                                    <a href="https://www.google.com/maps/place/D'Perfect+Skin+Care/@-6.352201,106.5752241,21z/data=!4m6!3m5!1s0x2e69e3b34cf5a023:0xd2180ed9b054637d!8m2!3d-6.3521397!4d106.5753687!16s%2Fg%2F11t833_7fv?entry=ttu"
+                                                    <a href="https://maps.app.goo.gl/WGfmL6XsAqdQJ59y7"
                                                         target="_blank">Sentraland Paradise RC-19<br> Parung Panjang,
                                                         Bogor 16360</a>
                                                 </p>

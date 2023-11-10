@@ -17,10 +17,10 @@
                         <div class="row align-items-center">
                             <div class="col-xl-6 col-lg-6 col-md-6">
                                 <div class="tp-slider-content-2">
-                                    <span>Feature</span>
+                                    <span>{{$feature->product->kategori->nama}}</span>
                                     <h3 class="tp-slider-title-2">{{$feature->product->nama}}</h3>
                                     <div class="tp-slider-btn-2">
-                                        <a href="{{route('product.index', ['category' => $feature->product->kategori->slug])}}" class="tp-btn tp-btn-border">{{$feature->product->kategori->nama}}</a>
+                                        <a href="{{route('product.show', $feature->product)}}" class="tp-btn tp-btn-border">Detail</a>
                                     </div>
                                 </div>
                             </div>
@@ -56,10 +56,10 @@
                 <div class="col-xxl-4 col-lg-6 mb-20">
                     <div class="tp-banner-item-2 p-relative z-index-1 grey-bg-2 fix rounded" style="min-height: 250px !important">
                         <h3 class="tp-banner-title-2">
-                            <a href="shop.html">{{$category->nama}}</a>
+                            <a href="{{route('product.index', ['category' => $category->slug])}}">{{$category->nama}}</a>
                         </h3>
                         <div class="tp-banner-btn-2">
-                            <a href="shop.html" class="tp-btn tp-btn-border tp-btn-border-sm">Shop Now
+                            <a href="{{route('product.index', ['category' => $category->slug])}}" class="tp-btn tp-btn-border tp-btn-border-sm">Shop Now
                                 <i class="fas fa-arrow-right me-2"></i>
                             </a>
                         </div>
@@ -78,7 +78,7 @@
                 <div class="col-xl-12">
                     <div class="tp-section-title-wrapper-2 text-center mb-35">
                         <span class="tp-section-title-pre-2">
-                            All Product Shop
+                            Your Ultimate All Product Shop
                             <svg width="82" height="22" viewBox="0 0 82 22" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M81 14.5798C0.890564 -8.05914 -5.81154 0.0503902 5.00322 21" stroke="currentColor"
@@ -86,7 +86,7 @@
                                     stroke-linecap="round" />
                             </svg>
                         </span>
-                        <h3 class="tp-section-title-2">Customer Favorite Style Product</h3>
+                        <h3 class="tp-section-title-2">Discover Endless Choices, Embrace Timeless Quality</h3>
                     </div>
                 </div>
             </div>
@@ -211,13 +211,13 @@
                 </div>
                 <div class="col-xl-4 col-lg-5 col-md-8 col-sm-10">
                     <div class="tp-trending-banner p-relative ml-35">
-                        <div class="tp-trending-banner-thumb w-img include-bg"
-                            data-background="{{ asset('/') }}img/product/trending/banner/trending-banner.jpg">
+                        <div class="tp-trending-banner-thumb w-img include-bg rounded"
+                            data-background="{{ asset('img/product/trending/banner/trending-banner.jpg') }}">
                         </div>
                         <div class="tp-trending-banner-content">
-                            <h3 class="tp-trending-banner-title">
-                                <a href="{{route('product.index')}}">Short Sleeve Tunic <br> Tops Casual Swing</a>
-                            </h3>
+                            <h5 class="text-white mb-3">
+                                <a href="{{route('product.index')}}">Experience the Essence of Elegance with DI Perfects Beauty</a>
+                            </h5>
                             <div class="tp-trending-banner-btn">
                                 <a href="{{route('product.index')}}"
                                     class="tp-btn tp-btn-border tp-btn-border-white tp-btn-border-white-sm">
@@ -254,7 +254,7 @@
                                     stroke-linecap="round" />
                             </svg>
                         </span>
-                        <h3 class="tp-section-title-2">This Week's Featured</h3>
+                        <h3 class="tp-section-title-2">Unveiling Excellence: Best Sellers, This Week's Delights</h3>
                     </div>
                 </div>
             </div>
@@ -645,7 +645,7 @@
                             </div>
                             <div class="tp-feature-content-2">
                                 <h3 class="tp-feature-title-2">Member Discount</h3>
-                                <p>Onevery order over $140.00</p>
+                                <p>Onevery order over 20%</p>
                             </div>
                         </div>
                     </div>

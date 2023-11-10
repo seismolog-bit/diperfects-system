@@ -14,11 +14,11 @@
                        <h3 class="tp-contact-title">Sent A Message</h3>
 
                        <div class="tp-contact-form">
-                          <form id="contact-form" action="https://html.hixstudio.net/shofy-prv/shofy/assets/mail.php" method="POST">
+                          <form id="contact-form" action="#" method="POST">
                              <div class="tp-contact-input-wrapper">
                                 <div class="tp-contact-input-box">
                                    <div class="tp-contact-input">
-                                      <input name="name" id="name" type="text" placeholder="Shahnewaz Sakil" required>
+                                      <input name="name" id="name" type="text" required>
                                    </div>
                                    <div class="tp-contact-input-title">
                                       <label for="name">Your Name</label>
@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="tp-contact-input-box">
                                    <div class="tp-contact-input">
-                                      <input name="email" id="email" type="email" placeholder="shofy@mail.com" required>
+                                      <input name="email" id="email" type="email" required>
                                    </div>
                                    <div class="tp-contact-input-title">
                                       <label for="email">Your Email</label>
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="tp-contact-input-box">
                                    <div class="tp-contact-input">
-                                      <input name="subject" id="subject" type="text" placeholder="Write your subject" required>
+                                      <input name="subject" id="subject" type="text" required>
                                    </div>
                                    <div class="tp-contact-input-title">
                                       <label for="subject">Subject</label>
@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="tp-contact-input-box">
                                    <div class="tp-contact-input">
-                                     <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+                                     <textarea id="message" name="message" required></textarea>
                                    </div>
                                    <div class="tp-contact-input-title">
                                       <label for="message">Your Message</label>
@@ -68,7 +68,7 @@
                        <div class="tp-contact-info-item">
                           <div class="tp-contact-info-icon">
                              <span>
-                                <img src="assets/img/contact/contact-icon-1.png" alt="">
+                                <img src="{{asset('img/contact/contact-icon-1.png')}}" alt="">
                              </span>
                           </div>
                           <div class="tp-contact-info-content">
@@ -79,12 +79,12 @@
                        <div class="tp-contact-info-item">
                           <div class="tp-contact-info-icon">
                              <span>
-                                <img src="{{asset('assets/img/contact/contact-icon-2.png')}}" alt="">
+                                <img src="{{asset('img/contact/contact-icon-2.png')}}" alt="">
                              </span>
                           </div>
                           <div class="tp-contact-info-content">
                              <p>
-                                <a href="https://www.google.com/maps/place/D'Perfect+Skin+Care/@-6.352201,106.5752241,21z/data=!4m6!3m5!1s0x2e69e3b34cf5a023:0xd2180ed9b054637d!8m2!3d-6.3521397!4d106.5753687!16s%2Fg%2F11t833_7fv?entry=ttu" target="_blank">
+                                <a href="https://maps.app.goo.gl/WGfmL6XsAqdQJ59y7" target="_blank">
                                    Sentraland Paradise RC-19<br> Parung Panjang, Bogor 16360
                                 </a>
                              </p>
@@ -93,7 +93,7 @@
                        <div class="tp-contact-info-item">
                           <div class="tp-contact-info-icon">
                              <span>
-                                <img src="{{asset('assets/img/contact/contact-icon-3.png')}}" alt="">
+                                <img src="{{asset('img/contact/contact-icon-3.png')}}" alt="">
                              </span>
                           </div>
                           <div class="tp-contact-info-content">
@@ -101,9 +101,8 @@
                                 <h4 class="tp-contact-social-title">Find on social media</h4>
 
                                 <div class="tp-contact-social-icon">
-                                   <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                                   <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                                   <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                                   <a href="https://www.instagram.com/diperfects_official/" target="__blank"><i class="fa-brands fa-instagram"></i></a>
+                                   <a href="https://www.tiktok.com/@diperfects_official" target="__blank"><i class="fa-brands fa-tiktok"></i></a>
                                 </div>
                              </div>
                           </div>
@@ -130,8 +129,7 @@
                        </span>
                     </div>
                     <div class="tp-map-iframe">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.3236086197026!2d106.57279377488872!3d-6.3521343621443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69e3b34cf5a023%3A0xd2180ed9b054637d!2sD&#39;Perfect%20Skin%20Care!5e0!3m2!1sid!2sid!4v1699578813011!5m2!1sid!2sid" class="rounded"></iframe>
-                       {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830894612!2d-74.11976383964465!3d40.69766374865766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1678114595329!5m2!1sen!2sbd"></iframe> --}}
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1401.9539279113983!2d106.57573021201708!3d-6.352016411293867!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69e3b34cf5a023%3A0xd2180ed9b054637d!2sDI&#39;%20Perfects%20Beauty%20and%20Authentic%20Perfume!5e0!3m2!1sen!2sid!4v1699629836140!5m2!1sen!2sid" class="rounded"></iframe>
                     </div>
                  </div>
               </div>
