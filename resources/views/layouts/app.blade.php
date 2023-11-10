@@ -14,7 +14,7 @@
     <!-- Meta Media Sosial -->
     <meta property="og:title" content="@yield('title') - Produk Skincare dan Parfum Berkualitas">
     <meta property="og:description"
-        content="Ikuti perjalanan kecantikan kami di Instagram. Diperfects menghadirkan keindahan alami melalui produk skincare dan parfum berkualitas. Jangan lewatkan tips kecantikan eksklusif dan penawaran istimewa!">
+        content="Diperfects adalah destinasi terpercaya untuk produk skincare dan parfum berkualitas. Temukan kecantikan sejati melalui rangkaian produk perawatan kulit premium dan aroma parfum yang memikat. Keindahan alami dimulai dari sini.">
     <meta property="og:image" content="{{ asset('img/logo/logo-only.png') }}">
     <meta property="og:url" content="{{ route('index') }}">
 
