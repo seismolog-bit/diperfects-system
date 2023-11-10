@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $product->nama)
+
 @section('content')
     <section class="breadcrumb__area breadcrumb__style-2 include-bg pt-50 pb-20">
         <div class="container">

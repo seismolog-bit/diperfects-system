@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Beranda')
+
 @section('content')
     <!-- slider area start -->
     <section class="tp-slider-area p-relative z-index-1">

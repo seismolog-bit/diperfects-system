@@ -4,9 +4,49 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Shofy - Multipurpose eCommerce HTML Template</title>
-    <meta name="description" content="">
+    <title>@yield('title') - DI' Perfects Beauty & Authentic Perfume</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Meta Deskripsi Website -->
+    <meta name="description"
+        content="Diperfects adalah destinasi terpercaya untuk produk skincare dan parfum berkualitas. Temukan kecantikan sejati melalui rangkaian produk perawatan kulit premium dan aroma parfum yang memikat. Keindahan alami dimulai dari sini.">
+
+    <!-- Meta Media Sosial -->
+    <meta property="og:title" content="@yield('title') - Produk Skincare dan Parfum Berkualitas">
+    <meta property="og:description"
+        content="Ikuti perjalanan kecantikan kami di Instagram. Diperfects menghadirkan keindahan alami melalui produk skincare dan parfum berkualitas. Jangan lewatkan tips kecantikan eksklusif dan penawaran istimewa!">
+    <meta property="og:image" content="{{ asset('img/logo/logo-only.png') }}">
+    <meta property="og:url" content="{{ route('index') }}">
+
+    <!-- Meta Maps Lokasi -->
+    <meta name="geo.placename" content="DI' Perfects Beauty & Authentic Perfume">
+    <meta name="geo.position" content="-6.3521344;106.5727938">
+
+    <!-- Meta Shopee Online Shop -->
+    @if (!empty($product))
+        <meta property="og:site_name" content="Diperfects Official Shopee">
+        <meta property="og:type" content="product">
+        <meta property="product:price:amount" content="{{ $product->harga }}">
+        <meta property="product:price:currency" content="IDR">
+        <meta property="product:availability" content="Tersedia">
+
+
+        <meta property="og:site_name" content="Diperfects Official Tokopedia">
+        <meta property="og:type" content="product">
+        <meta property="product:price:amount" content="{{ $product->harga }}">
+        <meta property="product:price:currency" content="IDR">
+        <meta property="product:availability" content="Tersedia">
+    @endif
+
+    <!-- Meta Keywords -->
+    <meta name="keywords" content="produk skincare, parfum, kecantikan, perawatan kulit, keindahan">
+
+    <!-- Meta SEO Google -->
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+
+    <!-- Untuk menonaktifkan deteksi otomatis nomor telepon dan memformat mereka secara otomatis di halaman seluler -->
+    <meta name="format-detection" content="telephone=no">
 
     <!-- Place favicon.ico in the root directory -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/') }}img/logo/favicon.png">
@@ -640,7 +680,7 @@
                                         <li><a href="#">Privacy Policy</a></li>
                                         <li><a href="#">Terms & Conditions</a></li>
                                         {{-- <li><a href="#">Latest News</a></li> --}}
-                                        <li><a href="{{route('contact')}}">Contact Us</a></li>
+                                        <li><a href="{{ route('contact') }}">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -701,7 +741,8 @@
                                             <div class="tp-footer-contact-content">
                                                 <p>
                                                     <a href="https://www.google.com/maps/place/D'Perfect+Skin+Care/@-6.352201,106.5752241,21z/data=!4m6!3m5!1s0x2e69e3b34cf5a023:0xd2180ed9b054637d!8m2!3d-6.3521397!4d106.5753687!16s%2Fg%2F11t833_7fv?entry=ttu"
-                                                        target="_blank">Sentraland Paradise RC-19<br> Parung Panjang, Bogor 16360</a>
+                                                        target="_blank">Sentraland Paradise RC-19<br> Parung Panjang,
+                                                        Bogor 16360</a>
                                                 </p>
                                             </div>
                                         </div>
