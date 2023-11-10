@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\FeatureController;
+use App\Http\Controllers\Admin\GaleryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\MembershipController;
@@ -25,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('order/confirm', [OrderController::class, 'confirm'])->name('order.confirm');
     Route::post('order/{order}/finish', [OrderController::class, 'finish'])->name('order.finish');
     Route::get('order/{order}/invoice', [OrderController::class, 'invoice'])->name('order.invoice');
+    Route::get('order/{order}/status', [OrderController::class, 'status'])->name('order.status');
     // Route::post('order/{order}/payment', [OrderController::class, 'payment'])->name('order.payment');
     Route::resource('order-item', OrderItemController::class);
     Route::resource('payment', PaymentController::class);
@@ -36,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('user', UserController::class);
 
     Route::resource('feature', FeatureController::class);
+    Route::resource('galeries', GaleryController::class);
 
     Route::get('reports', [ReportController::class, 'index'])->name('report.index');
     Route::get('reports/finance', [ReportController::class, 'finance'])->name('report.finance');

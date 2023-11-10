@@ -40,6 +40,11 @@ class Product extends Model
         ];
     }
 
+    public function galeries()
+    {
+        return $this->hasMany(Galery::class);
+    }
+
     public function kategori()
     {
         return $this->belongsTo(Kategori::class);

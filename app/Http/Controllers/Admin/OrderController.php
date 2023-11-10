@@ -199,4 +199,12 @@ class OrderController extends Controller
             ]);
         }
     }
+
+    public function status(Order $order)
+    {
+        $order->status = ($order->status == 1 ? 2 : 1);
+        $order->save();
+
+        return redirect()->back()->with('success', 'Data berhasil disimpan');
+    }
 }

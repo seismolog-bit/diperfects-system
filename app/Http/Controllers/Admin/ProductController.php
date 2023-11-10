@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Galery;
 use App\Models\Kategori;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -22,6 +23,13 @@ class ProductController extends Controller
         $kategoris = Kategori::orderBy('nama', 'ASC')->get();
 
         return view('admin.produk.create', compact('kategoris'));
+    }
+
+    public function show(Product $product)
+    {
+        $galeries = Galery::where('product_id', $product->id)->get();
+
+        return view('admin.produk.show', compact('product', 'galeries'));
     }
 
     public function edit(Product $product)

@@ -108,7 +108,7 @@
                     @forelse ($orders as $order)
                         <tr>
                             <td>
-                                <a href="{{route('admin.order.show', $order->id)}}"><b>{{ $order->code }}</b></a>
+                                <a href="{{ route('admin.order.show', $order->id) }}"><b>{{ $order->code }}</b></a>
                             </td>
                             <td>{{ $order->membership->nama }}</td>
                             <td class="text-end">{{ number_format($order->grand_total) }}</td>
@@ -142,10 +142,13 @@
 
                                         <div class="dropdown-menu dropdown-menu-end mt-1"
                                             aria-labelledby="ordersEditDropdown8">
+                                            <a href="{{route('admin.order.status', $order)}}" class="dropdown-item">
+                                                <i class="bi-arrow-clockwise dropdown-item-icon"></i> {{$order->status == 1 ? 'Selesaikan' : 'Aktifkan'}}
+                                            </a>
                                             <form action="{{ route('admin.order.destroy', $order->id) }}" method="post"
                                                 onsubmit="return confirm('Anda yakin ingin membatalkan pesanan ini?')">
                                                 @csrf @method('delete')
-                                                <button class="dropdown-item" type="submit">
+                                                <button class="dropdown-item text-danger" type="submit">
                                                     <i class="bi-trash dropdown-item-icon"></i> Delete
                                                 </button>
                                             </form>

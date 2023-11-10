@@ -10,6 +10,13 @@
             <a class="btn btn-soft-primary me-2" href="{{ route('admin.order.invoice', $order->id) }}">
                 <i class="bi-receipt me-1"></i> Cetak invoice
             </a>
+            <form action="{{ route('admin.order.finish', $order->id) }}" method="post"
+                onsubmit="return confirm('Anda yakin ingin menyelesaikan pesanan ini?')">
+                @csrf
+                <input type="hidden" name="type" value="finish">
+                <button type="submit" class="btn btn-success"
+                    {{ $order->status != 1 ? 'disabled' : '' }}>Selesaikan pesanan</button>
+            </form>
         </div>
     </x-admin-page-header>
 
@@ -188,13 +195,7 @@
                                     {{ $order->status != 1 ? 'disabled' : '' }}>Batalkan</button>
                             </form>
 
-                            <form action="{{ route('admin.order.finish', $order->id) }}" method="post"
-                                onsubmit="return confirm('Anda yakin ingin menyelesaikan pesanan ini?')">
-                                @csrf
-                                <input type="hidden" name="type" value="finish">
-                                <button type="submit" class="btn btn-success"
-                                    {{ $order->status != 1 ? 'disabled' : '' }}>Selesaikan pesanan</button>
-                            </form>
+
                         </div>
                     </div>
                 </div>

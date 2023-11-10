@@ -37,18 +37,13 @@
                                         aria-selected="true">
                                         <img src="{{ asset($product->image_url) }}" alt="">
                                     </button>
-                                    {{-- <button class="nav-link" id="nav-2-tab" data-bs-toggle="tab" data-bs-target="#nav-2" type="button" role="tab" aria-controls="nav-2" aria-selected="false">
-                            <img src="assets/img/product/details/nav/product-details-nav-2.jpg" alt="">
-                         </button>
-                         <button class="nav-link" id="nav-3-tab" data-bs-toggle="tab" data-bs-target="#nav-3" type="button" role="tab" aria-controls="nav-3" aria-selected="false">
-                            <img src="assets/img/product/details/nav/product-details-nav-3.jpg" alt="">
-                         </button>
-                         <button class="nav-link" id="nav-4-tab" data-bs-toggle="tab" data-bs-target="#nav-4" type="button" role="tab" aria-controls="nav-4" aria-selected="false">
-                            <img src="assets/img/product/details/nav/product-details-nav-4.jpg" alt="">
-                         </button>
-                         <button class="nav-link" id="nav-5-tab" data-bs-toggle="tab" data-bs-target="#nav-5" type="button" role="tab" aria-controls="nav-5" aria-selected="false">
-                            <img src="assets/img/product/details/nav/product-details-nav-5.jpg" alt="">
-                         </button> --}}
+                                    @foreach ($product->galeries as $galery)
+                                        <button class="nav-link" id="nav-{{$galery->id}}-tab" data-bs-toggle="tab" data-bs-target="#nav-{{$galery->id}}"
+                                            type="button" role="tab" aria-controls="nav-{{$galery->id}}" aria-selected="false">
+                                            <img src="{{asset($galery->image_url)}}"
+                                                alt="">
+                                        </button>
+                                    @endforeach
                                 </div>
                             </nav>
                             <div class="tab-content m-img" id="productDetailsNavContent">
@@ -58,6 +53,13 @@
                                         <img src="{{ asset($product->image_url) }}" alt="" class="rounded">
                                     </div>
                                 </div>
+                                @foreach ($product->galeries as $galery)
+                                <div class="tab-pane fade" id="nav-{{$galery->id}}" role="tabpanel" aria-labelledby="nav-{{$galery->id}}-tab" tabindex="0">
+                                    <div class="tp-product-details-nav-main-thumb">
+                                       <img src="{{asset($galery->image_url)}}" alt="" class="rounded">
+                                    </div>
+                                 </div>
+                                @endforeach
                                 {{-- <div class="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav-2-tab" tabindex="0">
                          <div class="tp-product-details-nav-main-thumb">
                             <img src="assets/img/product/details/main/product-details-main-2.jpg" alt="">
@@ -94,7 +96,7 @@
                                     <span>In Stock</span>
                                 </div>
                                 <div class="tp-product-details-reviews mb-10">
-                                    <span>Views : {{number_format($product->views)}}</span>
+                                    <span>Views : {{ number_format($product->views) }}</span>
                                 </div>
                                 {{-- <div class="tp-product-details-rating-wrapper d-flex align-items-center mb-10">
                          <div class="tp-product-details-rating">
@@ -113,7 +115,8 @@
                             <!-- price -->
                             <div class="tp-product-details-price-wrapper mb-20">
                                 {{-- <span class="tp-product-details-price old-price">$320.00</span> --}}
-                                <span class="tp-product-details-price new-price">{{ number_format($product->harga) }}</span>
+                                <span
+                                    class="tp-product-details-price new-price">{{ number_format($product->harga) }}</span>
                             </div>
                             <hr>
                             <div class="tp-product-details-social">
@@ -247,7 +250,8 @@
                               </div> --}}
 
                                             <div class="tp-product-add-cart-btn-large-wrapper">
-                                                <a href="{{route('product.show', $product)}}" class="tp-product-add-cart-btn-large text-center">
+                                                <a href="{{ route('product.show', $product) }}"
+                                                    class="tp-product-add-cart-btn-large text-center">
                                                     DETAIL
                                                 </a>
                                             </div>
