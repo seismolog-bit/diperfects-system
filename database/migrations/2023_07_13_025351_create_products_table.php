@@ -22,6 +22,7 @@ return new class extends Migration
             $table->decimal('harga', 16,0)->default(0);
             $table->integer('stok')->default(0);
             $table->integer('kategori_id');
+            $table->string('bpom')->nullable();
             //ukuran
             $table->decimal('berat', 16,0)->default(0);
             $table->decimal('panjang', 16,0)->default(0);
@@ -34,6 +35,10 @@ return new class extends Migration
             $table->boolean('status')->default(1);
             //komisi
             $table->boolean('komisi')->default(0);
+
+            //views
+            $table->bigIncrements('views')->default(0);
+            $table->boolean('feature')->default(false);
             $table->timestamps();
         });
     }

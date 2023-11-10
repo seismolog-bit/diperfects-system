@@ -2,23 +2,25 @@
 
 use App\Http\Controllers\Admin\KelurahanController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\Public\AboutController;
+use App\Http\Controllers\Public\HomeController;
+use App\Http\Controllers\Public\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//product
+Route::get('products', [ProductController::class, 'index'])->name('product.index');
+Route::get('products/{product:slug}', [ProductController::class, 'show'])->name('product.show');
+
+//about
+Route::get('contact', [AboutController::class, 'contact'])->name('contact');
+Route::get('about', [AboutController::class, 'about'])->name('about');
+Route::get('privacy', [AboutController::class, 'privacy'])->name('privacy');
+Route::get('term-condition', [AboutController::class, 'term'])->name('term');
+
+Route::get('news', [AboutController::class, 'news'])->name('news');
 
 Auth::routes(['register' => false]);
 
