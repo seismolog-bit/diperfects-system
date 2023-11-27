@@ -5,10 +5,33 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class OrderItemController extends Controller
 {
+    public function index(Request $request)
+    {
+        $startDate = Carbon::now()->startOfMonth();
+        $endDate = Carbon::now()->endOfDay();
+
+        if($request->dates)
+        {
+            $dates = explode(' - ', $request->dates);
+            $startDate = Carbon::parse($dates[0]);
+            $endDate = Carbon::parse($dates[1] . ' 23:59:59');
+        }
+
+        $items = OrderItem::query();
+
+        $items->whereBetween('created_at', [$startDate, $endDate]);
+        $items = $items->get();
+
+        $dates = $startDate->format('m-d-Y') . ' - ' . $endDate->format('m-d-Y');
+
+        return view('admin.order_items.index', compact('items', 'dates'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([

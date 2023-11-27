@@ -24,8 +24,8 @@ class OrderController extends Controller
 
     public function order_membership()
     {
-        $memberships = Membership::orderBy('nama', 'asc')->get();
-        $orders = Order::all();
+        $memberships = Membership::orderBy('nama', 'asc')->withCount('orders')->with('orders')->get();
+        $orders = Order::get();
 
         return view('admin.order.order_membership', compact('memberships', 'orders'));
     }

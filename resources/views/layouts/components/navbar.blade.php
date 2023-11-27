@@ -47,10 +47,11 @@
             </a>
 
             <div id="navbarVerticalMenuOrders"
-                class="nav-collapse collapse {{ request()->routeIs('admin.order.*') ? 'show' : '' }}"
+                class="nav-collapse collapse {{ request()->routeIs(['admin.order.*', 'admin.order-item.index']) ? 'show' : '' }}"
                 data-bs-parent="#navbarVerticalMenu">
-                <a class="nav-link" href="{{ route('admin.order.index') }}">Daftar Pesanan</a>
                 <a class="nav-link" href="{{ route('admin.order.create') }}">Tambah Pesanan</a>
+                <a class="nav-link" href="{{ route('admin.order.index') }}">Daftar Pesanan</a>
+                <a class="nav-link" href="{{ route('admin.order-item.index') }}">Daftar Barang Pesanan</a>
             </div>
         </div>
         <div class="nav-item">
